@@ -12,7 +12,8 @@ The concept and the coding strategy are described on the first section of each f
 
 | Week | Demo | Source |
 |---|---|---|
-|1|[Demo](https://isthatlowsonli.github.io/Social-Network-Analysis/blob/Script/HW1.nb.html)|[Source](https://github.com/isthatlowsonli/Social-Network-Analysis/blob/master/Script/HW1.Rmd)|
+|1|[Demo](https://isthatlowsonli.github.io/Social-Network-Analysis/Script/HW1.nb.html)|[Source](https://github.com/isthatlowsonli/Social-Network-Analysis/blob/master/Script/HW1.Rmd)|
+
 
 ## Getting Started
 

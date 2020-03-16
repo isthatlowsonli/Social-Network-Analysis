@@ -1,10 +1,11 @@
 # Social Network Analysis
-This is the repo for NTU course, Financial Engineering
+This is the repo for NTU course, Economic Analysis of Social Networks
 
 ## Author 
 * Name: **Lowson Li** [![LinkedIn][linkedin-shield]][linkedin-url]
 * Student ID: R08323023
 * Department: Economics, first year of postgraduate
+
 
 ## Homework
 The concept and the coding strategy are described on the first section of each file.

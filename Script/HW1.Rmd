@@ -1,0 +1,172 @@
+---
+title: "HW1"
+author: "Lowson Li, R08323023"
+output:
+  html_notebook:
+    code_folding: show
+    highlight: tango
+    number_sections: yes
+    theme: simplex
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  html_document:
+    df_print: paged
+    toc: yes
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+# Load packages
+```{r}
+library(tidyverse)
+library(tidygraph)
+library(igraph)
+library(visNetwork)
+```
+
+# Import data
+```{r}
+library(readr)
+class <- read_csv("/Users/leon/Desktop/Social-Network-Analysis/Data/class.csv", col_names = FALSE)
+```
+
+# Q1
+
+Generate the network (with 12 nodes) with the given edge set, complete the corresponding analysis and visualization tasks.
+
+Edge set:
+1 and 2, 1 and 3, 1 and 4, 1 and 8, 1 and 10, 1 and 11, 1 and 12;
+2 and 3, 2 and 4, 2 and 5, 2 and 6;
+3 and 5, 3 and 6;
+4 and 7, 4 and 9, 4 and 10, 4 and 12;
+5 and 9, 5 and 11;
+6 and 12;
+7 and 11;
+8 and 12;
+9 and 10;
+11 and 12;
+
+1) Report the adjacency matrix, and plot this network with labels.
+2) Find the node(s) with maximum degree, what’s the maximum degree value? And find the node(s) with maximum betweenness, what’s the maximum betweenness value?
+
+## Create node list
+```{r}
+node_list <- tibble(id = 1:12)
+```
+
+## Create edge list 
+```{r}
+edge_list <- tibble(from = c(rep(1, 7), rep(2, 4), rep(3, 2), rep(4, 4), rep(5, 2), 6:9, 11), to = c(2, 3, 4, 8, 10, 11, 12, 3, 4, 5, 6, 5, 6, 7, 9, 10, 12, 9, 11, 12, 11, 12, 10, 12))
+```
+
+## Adjancency matrix
+```{r}
+tbl_graph(nodes = node_list, edges = edge_list, directed = FALSE) %>%
+  igraph::get.adjacency()
+```
+
+
+## Plot the networks
+### igraph
+This will plot original igraph.
+```{r}
+g <- tbl_graph(nodes = node_list, edges = edge_list, directed = FALSE) # save graph named "g"
+g %>%
+  plot()
+```
+### visNetwork
+By `visNetwork`, we can plot interactive network.
+```{r}
+ g %>%
+  visIgraph()
+```
+
+## Descriptive analysis
+### Degree
+```{r}
+g %>%
+  mutate(degree = tidygraph::centrality_degree()) %>%
+  arrange(desc(degree))
+```
+We can found that the node 1 has the maximum degree 7.
+
+### Betweenness
+
+```{r}
+g %>%
+  mutate(betweenness = tidygraph::centrality_betweenness()) %>%
+  arrange(desc(betweenness))
+```
+We can found that the node 1 has the maximum betweenness 12.7.
+
+# Q2
+Import the friendship network in a class represented by an adjacency matrix “class” into R:
+
+1) What is the highest page rank value among nodes?
+2) What is the size of the largest component in this network?
+3) What is the global clustering coefficient and assortivity of outdegree in this network?
+```{r}
+# data has imported, change it into igraph networks
+g_class <- class %>%
+  as.matrix() %>%
+  igraph::graph.adjacency(mode = "directed", weighted = NULL)
+# though the graph seems undirected, using directed mode will help count outdegree
+
+g_class %>%
+  visNetwork::visIgraph()
+# use visIgraph function from visNetwork package for interactive view of network
+```
+
+## Page rank
+```{r}
+g_class %>% 
+  igraph::page.rank()
+```
+All of the nodes have the same Page rank scores 0.01886792 since they all point to each other.
+
+## Largest component
+```{r}
+g_class %>%
+  igraph::components() %>%
+  .$csize %>%
+  sort(decreasing = TRUE)
+```
+The size of the largest component in this network is 11.
+
+## Global clustering coefficient
+```{r}
+g_class %>% 
+  igraph::transitivity(type = "global")
+```
+In `igraph`, the global clustering coefficient is call transitivity. The global clustering coefficient of the class network is 1.
+
+## Assortativity of outdegree
+```{r}
+g_class %>% 
+  igraph::assortativity.degree()
+```
+
+Since the grapg is symmertric, the ourdegree is qual to the indegree for each node. The assortativity of outdegree is 1.
+
+
+# References
+
+* [Introduction to Network Analysis with R](https://www.jessesadler.com/post/network-analysis-with-r/)
+* [Introducing tidygraph](https://www.data-imaginist.com/2017/introducing-tidygraph/)
+* [Introduction to tidygraph & ggraph](https://www.rpubs.com/Steven_Surya/tidygraph-ggraph)
+* [Convert a graph to an adjacency matrix or an edge list](http://cneurocvs.rmki.kfki.hu/igraph/doc/R/conversion.html)
+* [Tidygraph](http://users.dimi.uniud.it/~massimo.franceschet/ns/syllabus/make/tidygraph/tidygraph.html)
+* [visNetwork](https://datastorm-open.github.io/visNetwork/)
+* [Social network analysis with R: Descriptive analysis](http://pablobarbera.com/big-data-upf/html/02b-networks-descriptive-analysis.html)
+* [Betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality)
+* [Import a Matrix as an igraph Network](https://rpubs.com/pjmurphy/310459)
+* [Clustering coefficient](https://en.wikipedia.org/wiki/Clustering_coefficient)
+* [Assortativity](https://en.wikipedia.org/wiki/Assortativity)

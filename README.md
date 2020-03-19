@@ -29,5 +29,13 @@ Install [R](https://www.r-project.org) and [RStudio](https://rstudio.com)
 ### Path 
 Linked `nb.html` file is for demonstration. For executing the code, please go to the `Script` directory and find the `.Rmd` file with the same file name.)
 
+## Reproducible environment
+
+If you need to port your project to a new machine, you can call `renv::restore()` to reinstall all of the packages as declared in the lockfile.
+
+For more details about reproducible environments for R projects, please visit [renv](https://rstudio.github.io/renv/)
+
+For more details about data management, please visit [Efficient Data Management in R](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/efficient-data-r/)
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]:https://www.linkedin.com/in/isthatlowsonli

@@ -35,7 +35,7 @@ library(visNetwork)
 # Import data
 ```{r}
 library(readr)
-class <- read_csv("/Users/leon/Desktop/Social-Network-Analysis/Data/class.csv", col_names = FALSE)
+class <- read_csv("../Data/class.csv", col_names = FALSE)
 ```
 
 # Q1

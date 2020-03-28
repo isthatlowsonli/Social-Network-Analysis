@@ -2983,69 +2983,12 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Load packages</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KHRpZHlncmFwaClcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KHRpZHlncmFwaClcbmxpYnJhcnkoaWdyYXBoKVxubGlicmFyeShzcGF0aWFscmVnKVxuYGBgIn0= -->
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidygraph)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidygraph)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(igraph)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(spatialreg)</a></code></pre></div>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYdGlkeWdyYXBo4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6c3RhdHPigJk6XG5cbiAgICBmaWx0ZXJcbiJ9 -->
-<pre><code>
-Attaching package: ‘tidygraph’
-
-The following object is masked from ‘package:stats’:
-
-    filter</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShpZ3JhcGgpXG5gYGAifQ== -->
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(igraph)</a></code></pre></div>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYaWdyYXBo4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6dGlkeWdyYXBo4oCZOlxuXG4gICAgZ3JvdXBzXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g4oCYcGFja2FnZTpkcGx5cuKAmTpcblxuICAgIGFzX2RhdGFfZnJhbWUsIGdyb3VwcywgdW5pb25cblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnB1cnJy4oCZOlxuXG4gICAgY29tcG9zZSwgc2ltcGxpZnlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTp0aWR5cuKAmTpcblxuICAgIGNyb3NzaW5nXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6dGliYmxl4oCZOlxuXG4gICAgYXNfZGF0YV9mcmFtZVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6c3RhdHPigJk6XG5cbiAgICBkZWNvbXBvc2UsIHNwZWN0cnVtXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIHVuaW9uXG4ifQ== -->
-<pre><code>
-Attaching package: ‘igraph’
-
-The following object is masked from ‘package:tidygraph’:
-
-    groups
-
-The following objects are masked from ‘package:dplyr’:
-
-    as_data_frame, groups, union
-
-The following objects are masked from ‘package:purrr’:
-
-    compose, simplify
-
-The following object is masked from ‘package:tidyr’:
-
-    crossing
-
-The following object is masked from ‘package:tibble’:
-
-    as_data_frame
-
-The following objects are masked from ‘package:stats’:
-
-    decompose, spectrum
-
-The following object is masked from ‘package:base’:
-
-    union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzcGF0aWFscmVnKVxuYGBgIn0= -->
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(spatialreg)</a></code></pre></div>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBzcERhdGFcblRvIGFjY2VzcyBsYXJnZXIgZGF0YXNldHMgaW4gdGhpcyBwYWNrYWdlLCBpbnN0YWxsIHRoZSBzcERhdGFMYXJnZVxucGFja2FnZSB3aXRoOiBgaW5zdGFsbC5wYWNrYWdlcygnc3BEYXRhTGFyZ2UnLFxucmVwb3M9J2h0dHBzOi8vbm93b3NhZC5naXRodWIuaW8vZHJhdC8nLCB0eXBlPSdzb3VyY2UnKWBcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogTWF0cml4XG5cbkF0dGFjaGluZyBwYWNrYWdlOiDigJhNYXRyaXjigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnRpZHly4oCZOlxuXG4gICAgZXhwYW5kLCBwYWNrLCB1bnBhY2tcbiJ9 -->
-<pre><code>Loading required package: spData
-To access larger datasets in this package, install the spDataLarge
-package with: `install.packages('spDataLarge',
-repos='https://nowosad.github.io/drat/', type='source')`
-Loading required package: Matrix
-
-Attaching package: ‘Matrix’
-
-The following objects are masked from ‘package:tidyr’:
-
-    expand, pack, unpack</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3054,17 +2997,148 @@ The following objects are masked from ‘package:tidyr’:
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9hZChcIi4uL0RhdGEvZGF0YXNldF9uZXR3b3JrX2ludGVyYWN0aW9ucy5SRGF0YVwiKVxuc3RyKGRhdGFzZXRfbGVjdHVyZTMpXG5gYGAifQ== -->
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;../Data/dataset_network_interactions.RData&quot;</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">str</span>(dataset_lecture3)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&quot;../Data/dataset_network_interactions.RData&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">str</span>(dataset_lecture3)</a></code></pre></div>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGlzdCBvZiAyXG4gJCA6IG51bSBbMTozMzYsIDE6MTddIDIuNSAzLjc1IDIuNzUgMyAzLjc1IDIuMjUgMi4yNSAyLjc1IDIuNzUgMyAuLi5cbiAkIDogbnVtIFsxOjMzNiwgMTozMzZdIDAgMCAwIDAgMCAwIDAgMCAwIDAgLi4uXG4ifQ== -->
+<pre><code>List of 2
+ $ : num [1:336, 1:17] 2.5 3.75 2.75 3 3.75 2.25 2.25 2.75 2.75 3 ...
+ $ : num [1:336, 1:336] 0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The data contains 2 lists.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YXNldF9sZWN0dXJlM1tbMV1dICU+JSBoZWFkKClcbmBgYCJ9 -->
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">dataset_lecture3[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">dataset_lecture3[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gIFssM10gWyw0XSBbLDVdIFssNl0gWyw3XSBbLDhdIFssOV0gWywxMF0gWywxMV0gWywxMl0gWywxM11cblsxLF0gMi41MCAgICAwIDAuMDAwICAgIDEgIDEuNSAgICAwICAgIDAgICAgMCAgICAxICAgICAwICAgICAwICAgICAwICAgICAxXG5bMixdIDMuNzUgICAgMCAwLjAyOSAgICA0ICA0LjAgICAgMCAgICAxICAgIDAgICAgMCAgICAgMCAgICAgMSAgICAgMCAgICAgMVxuWzMsXSAyLjc1ICAgIDAgMC4wMDAgICAgNCAgMS41ICAgIDAgICAgMSAgICAwICAgIDAgICAgIDAgICAgIDEgICAgIDAgICAgIDBcbls0LF0gMy4wMCAgICAwIDAuMDAwICAgIDIgIDQuMCAgICAwICAgIDEgICAgMCAgICAwICAgICAwICAgICAxICAgICAwICAgICAwXG5bNSxdIDMuNzUgICAgMCAwLjAwMCAgICAzICAwLjAgICAgMCAgICAwICAgIDAgICAgMSAgICAgMCAgICAgMSAgICAgMSAgICAgMFxuWzYsXSAyLjI1ICAgIDAgMC4wMDAgICAgMiAgMS41ICAgIDEgICAgMSAgICAwICAgIDAgICAgIDAgICAgIDEgICAgIDAgICAgIDFcbiAgICAgWywxNF0gWywxNV0gWywxNl0gWywxN11cblsxLF0gICAgIDAgICAgIDAgICAgIDAgICAgIDBcblsyLF0gICAgIDAgICAgIDAgICAgIDAgICAgIDFcblszLF0gICAgIDAgICAgIDEgICAgIDAgICAgIDBcbls0LF0gICAgIDAgICAgIDAgICAgIDAgICAgIDFcbls1LF0gICAgIDAgICAgIDAgICAgIDEgICAgIDBcbls2LF0gICAgIDAgICAgIDAgICAgIDEgICAgIDBcbiJ9 -->
+<pre><code>     [,1] [,2]  [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+[1,] 2.50    0 0.000    1  1.5    0    0    0    1     0     0     0     1
+[2,] 3.75    0 0.029    4  4.0    0    1    0    0     0     1     0     1
+[3,] 2.75    0 0.000    4  1.5    0    1    0    0     0     1     0     0
+[4,] 3.00    0 0.000    2  4.0    0    1    0    0     0     1     0     0
+[5,] 3.75    0 0.000    3  0.0    0    0    0    1     0     1     1     0
+[6,] 2.25    0 0.000    2  1.5    1    1    0    0     0     1     0     1
+     [,14] [,15] [,16] [,17]
+[1,]     0     0     0     0
+[2,]     0     0     0     1
+[3,]     0     1     0     0
+[4,]     0     0     0     1
+[5,]     0     0     1     0
+[6,]     0     0     1     0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The fisrt element of the list contains the adjacency matrix.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YXNldF9sZWN0dXJlM1tbMl1dICU+JSBoZWFkKClcblxuYGBgIn0= -->
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">dataset_lecture3[[<span class="dv">2</span>]] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdIFssNV0gWyw2XSBbLDddIFssOF0gWyw5XSBbLDEwXSBbLDExXSBbLDEyXSBbLDEzXVxuWzEsXSAgICAwICAgIDAgICAgMCAgICAwICAgIDAgICAgMCAgICAwICAgIDAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAwICAgIDAgICAgMCAgICAwICAgIDAgICAgMCAgICAwICAgIDAgICAgMCAgICAgMCAgICAgMSAgICAgMCAgICAgMFxuICAgICBbLDE0XSBbLDE1XSBbLDE2XSBbLDE3XSBbLDE4XSBbLDE5XSBbLDIwXSBbLDIxXSBbLDIyXSBbLDIzXSBbLDI0XVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDI1XSBbLDI2XSBbLDI3XSBbLDI4XSBbLDI5XSBbLDMwXSBbLDMxXSBbLDMyXSBbLDMzXSBbLDM0XSBbLDM1XVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDM2XSBbLDM3XSBbLDM4XSBbLDM5XSBbLDQwXSBbLDQxXSBbLDQyXSBbLDQzXSBbLDQ0XSBbLDQ1XSBbLDQ2XVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDQ3XSBbLDQ4XSBbLDQ5XSBbLDUwXSBbLDUxXSBbLDUyXSBbLDUzXSBbLDU0XSBbLDU1XSBbLDU2XSBbLDU3XVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDU4XSBbLDU5XSBbLDYwXSBbLDYxXSBbLDYyXSBbLDYzXSBbLDY0XSBbLDY1XSBbLDY2XSBbLDY3XSBbLDY4XVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDY5XSBbLDcwXSBbLDcxXSBbLDcyXSBbLDczXSBbLDc0XSBbLDc1XSBbLDc2XSBbLDc3XSBbLDc4XSBbLDc5XVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDgwXSBbLDgxXSBbLDgyXSBbLDgzXSBbLDg0XSBbLDg1XSBbLDg2XSBbLDg3XSBbLDg4XSBbLDg5XSBbLDkwXVxuWzEsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuWzIsXSAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMCAgICAgMFxuICAgICBbLDkxXSBbLDkyXSBbLDkzXSBbLDk0XSBbLDk1XSBbLDk2XSBbLDk3XSBbLDk4XSBbLDk5XSBbLDEwMF0gWywxMDFdXG5bMSxdICAgICAwICAgICAwICAgICAwICAgICAwICAgICAwICAgICAwICAgICAwICAgICAwICAgICAwICAgICAgMCAgICAgIDBcblsyLF0gICAgIDAgICAgIDAgICAgIDAgICAgIDAgICAgIDAgICAgIDAgICAgIDAgICAgIDAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDEwMl0gWywxMDNdIFssMTA0XSBbLDEwNV0gWywxMDZdIFssMTA3XSBbLDEwOF0gWywxMDldIFssMTEwXSBbLDExMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDExMl0gWywxMTNdIFssMTE0XSBbLDExNV0gWywxMTZdIFssMTE3XSBbLDExOF0gWywxMTldIFssMTIwXSBbLDEyMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDEyMl0gWywxMjNdIFssMTI0XSBbLDEyNV0gWywxMjZdIFssMTI3XSBbLDEyOF0gWywxMjldIFssMTMwXSBbLDEzMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDEzMl0gWywxMzNdIFssMTM0XSBbLDEzNV0gWywxMzZdIFssMTM3XSBbLDEzOF0gWywxMzldIFssMTQwXSBbLDE0MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMSAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDE0Ml0gWywxNDNdIFssMTQ0XSBbLDE0NV0gWywxNDZdIFssMTQ3XSBbLDE0OF0gWywxNDldIFssMTUwXSBbLDE1MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDE1Ml0gWywxNTNdIFssMTU0XSBbLDE1NV0gWywxNTZdIFssMTU3XSBbLDE1OF0gWywxNTldIFssMTYwXSBbLDE2MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMSAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDE2Ml0gWywxNjNdIFssMTY0XSBbLDE2NV0gWywxNjZdIFssMTY3XSBbLDE2OF0gWywxNjldIFssMTcwXSBbLDE3MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAxICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDE3Ml0gWywxNzNdIFssMTc0XSBbLDE3NV0gWywxNzZdIFssMTc3XSBbLDE3OF0gWywxNzldIFssMTgwXSBbLDE4MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDE4Ml0gWywxODNdIFssMTg0XSBbLDE4NV0gWywxODZdIFssMTg3XSBbLDE4OF0gWywxODldIFssMTkwXSBbLDE5MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDE5Ml0gWywxOTNdIFssMTk0XSBbLDE5NV0gWywxOTZdIFssMTk3XSBbLDE5OF0gWywxOTldIFssMjAwXSBbLDIwMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDIwMl0gWywyMDNdIFssMjA0XSBbLDIwNV0gWywyMDZdIFssMjA3XSBbLDIwOF0gWywyMDldIFssMjEwXSBbLDIxMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDIxMl0gWywyMTNdIFssMjE0XSBbLDIxNV0gWywyMTZdIFssMjE3XSBbLDIxOF0gWywyMTldIFssMjIwXSBbLDIyMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDIyMl0gWywyMjNdIFssMjI0XSBbLDIyNV0gWywyMjZdIFssMjI3XSBbLDIyOF0gWywyMjldIFssMjMwXSBbLDIzMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDIzMl0gWywyMzNdIFssMjM0XSBbLDIzNV0gWywyMzZdIFssMjM3XSBbLDIzOF0gWywyMzldIFssMjQwXSBbLDI0MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMSAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDI0Ml0gWywyNDNdIFssMjQ0XSBbLDI0NV0gWywyNDZdIFssMjQ3XSBbLDI0OF0gWywyNDldIFssMjUwXSBbLDI1MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDI1Ml0gWywyNTNdIFssMjU0XSBbLDI1NV0gWywyNTZdIFssMjU3XSBbLDI1OF0gWywyNTldIFssMjYwXSBbLDI2MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDI2Ml0gWywyNjNdIFssMjY0XSBbLDI2NV0gWywyNjZdIFssMjY3XSBbLDI2OF0gWywyNjldIFssMjcwXSBbLDI3MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDI3Ml0gWywyNzNdIFssMjc0XSBbLDI3NV0gWywyNzZdIFssMjc3XSBbLDI3OF0gWywyNzldIFssMjgwXSBbLDI4MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDI4Ml0gWywyODNdIFssMjg0XSBbLDI4NV0gWywyODZdIFssMjg3XSBbLDI4OF0gWywyODldIFssMjkwXSBbLDI5MV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDI5Ml0gWywyOTNdIFssMjk0XSBbLDI5NV0gWywyOTZdIFssMjk3XSBbLDI5OF0gWywyOTldIFssMzAwXSBbLDMwMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDMwMl0gWywzMDNdIFssMzA0XSBbLDMwNV0gWywzMDZdIFssMzA3XSBbLDMwOF0gWywzMDldIFssMzEwXSBbLDMxMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDMxMl0gWywzMTNdIFssMzE0XSBbLDMxNV0gWywzMTZdIFssMzE3XSBbLDMxOF0gWywzMTldIFssMzIwXSBbLDMyMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDMyMl0gWywzMjNdIFssMzI0XSBbLDMyNV0gWywzMjZdIFssMzI3XSBbLDMyOF0gWywzMjldIFssMzMwXSBbLDMzMV1cblsxLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwXG5bMixdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuICAgICBbLDMzMl0gWywzMzNdIFssMzM0XSBbLDMzNV0gWywzMzZdXG5bMSxdICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMCAgICAgIDBcblsyLF0gICAgICAwICAgICAgMCAgICAgIDAgICAgICAwICAgICAgMFxuIFsgcmVhY2hlZCBnZXRPcHRpb24oXCJtYXgucHJpbnRcIikgLS0gb21pdHRlZCA0IHJvd3MgXVxuIn0= -->
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+[1,]    0    0    0    0    0    0    0    0    0     0     0     0     0
+[2,]    0    0    0    0    0    0    0    0    0     0     1     0     0
+     [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,25] [,26] [,27] [,28] [,29] [,30] [,31] [,32] [,33] [,34] [,35]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,36] [,37] [,38] [,39] [,40] [,41] [,42] [,43] [,44] [,45] [,46]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,47] [,48] [,49] [,50] [,51] [,52] [,53] [,54] [,55] [,56] [,57]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,58] [,59] [,60] [,61] [,62] [,63] [,64] [,65] [,66] [,67] [,68]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,69] [,70] [,71] [,72] [,73] [,74] [,75] [,76] [,77] [,78] [,79]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,80] [,81] [,82] [,83] [,84] [,85] [,86] [,87] [,88] [,89] [,90]
+[1,]     0     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0     0
+     [,91] [,92] [,93] [,94] [,95] [,96] [,97] [,98] [,99] [,100] [,101]
+[1,]     0     0     0     0     0     0     0     0     0      0      0
+[2,]     0     0     0     0     0     0     0     0     0      0      0
+     [,102] [,103] [,104] [,105] [,106] [,107] [,108] [,109] [,110] [,111]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,112] [,113] [,114] [,115] [,116] [,117] [,118] [,119] [,120] [,121]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,122] [,123] [,124] [,125] [,126] [,127] [,128] [,129] [,130] [,131]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,132] [,133] [,134] [,135] [,136] [,137] [,138] [,139] [,140] [,141]
+[1,]      0      0      0      0      1      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,142] [,143] [,144] [,145] [,146] [,147] [,148] [,149] [,150] [,151]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,152] [,153] [,154] [,155] [,156] [,157] [,158] [,159] [,160] [,161]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      1      0      0      0      0      0      0
+     [,162] [,163] [,164] [,165] [,166] [,167] [,168] [,169] [,170] [,171]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      1      0      0      0      0
+     [,172] [,173] [,174] [,175] [,176] [,177] [,178] [,179] [,180] [,181]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,182] [,183] [,184] [,185] [,186] [,187] [,188] [,189] [,190] [,191]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,192] [,193] [,194] [,195] [,196] [,197] [,198] [,199] [,200] [,201]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,202] [,203] [,204] [,205] [,206] [,207] [,208] [,209] [,210] [,211]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,212] [,213] [,214] [,215] [,216] [,217] [,218] [,219] [,220] [,221]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,222] [,223] [,224] [,225] [,226] [,227] [,228] [,229] [,230] [,231]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,232] [,233] [,234] [,235] [,236] [,237] [,238] [,239] [,240] [,241]
+[1,]      0      0      0      0      0      0      0      1      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,242] [,243] [,244] [,245] [,246] [,247] [,248] [,249] [,250] [,251]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,252] [,253] [,254] [,255] [,256] [,257] [,258] [,259] [,260] [,261]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,262] [,263] [,264] [,265] [,266] [,267] [,268] [,269] [,270] [,271]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,272] [,273] [,274] [,275] [,276] [,277] [,278] [,279] [,280] [,281]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,282] [,283] [,284] [,285] [,286] [,287] [,288] [,289] [,290] [,291]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,292] [,293] [,294] [,295] [,296] [,297] [,298] [,299] [,300] [,301]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,302] [,303] [,304] [,305] [,306] [,307] [,308] [,309] [,310] [,311]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,312] [,313] [,314] [,315] [,316] [,317] [,318] [,319] [,320] [,321]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,322] [,323] [,324] [,325] [,326] [,327] [,328] [,329] [,330] [,331]
+[1,]      0      0      0      0      0      0      0      0      0      0
+[2,]      0      0      0      0      0      0      0      0      0      0
+     [,332] [,333] [,334] [,335] [,336]
+[1,]      0      0      0      0      0
+[2,]      0      0      0      0      0
+ [ reached getOption(&quot;max.print&quot;) -- omitted 4 rows ]</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -3094,7 +3168,7 @@ The following objects are masked from ‘package:tidyr’:
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSFcyIgphdXRob3I6ICJMb3dzb24gTGksIFIwODMyMzAyMyIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGhpZ2hsaWdodDogdGFuZ28KICAgIG51bWJlcl9zZWN0aW9uczogeWVzCiAgICB0aGVtZTogc2ltcGxleAogICAgdG9jOiB5ZXMKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiB5ZXMKICAgICAgc21vb3RoX3Njcm9sbDogeWVzCiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogICAgdG9jOiB5ZXMKICBwZGZfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwplZGl0b3Jfb3B0aW9uczoKICBjaHVua19vdXRwdXRfdHlwZTogaW5saW5lCi0tLQoKYGBge3IgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBtZXNzYWdlID0gRkFMU0UpCmBgYAoKIyBMb2FkIHBhY2thZ2VzCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeSh0aWR5Z3JhcGgpCmxpYnJhcnkoaWdyYXBoKQpsaWJyYXJ5KHNwYXRpYWxyZWcpCmBgYAoKIyBJbXBvcnQgZGF0YQpgYGB7cn0KbG9hZCgiLi4vRGF0YS9kYXRhc2V0X25ldHdvcmtfaW50ZXJhY3Rpb25zLlJEYXRhIikKc3RyKGRhdGFzZXRfbGVjdHVyZTMpCmBgYApUaGUgZGF0YSBjb250YWlucyAyIGxpc3RzLgpgYGB7cn0KZGF0YXNldF9sZWN0dXJlM1tbMV1dICU+JSBoZWFkKCkKYGBgCgoKIyBRMQpVc2luZyB0aGUgZGF0YXNldCBgZGF0YXNldF9uZXR3b3JrX2ludGVyYWN0aW9uc2AgcHJvdmlkZWQgaW4gdGhlIGNvdXJzZSBkZW1vbnN0cmF0aW9uLCBlc3RpbWF0ZSB0aGUgc3BhdGlhbCBEdXJiaW4gbW9kZWwgd2l0aCB0aGUgcmVncmVzc29ycyBXWCBpbmNsdWRlZC4gUmVwb3J0IHlvdXIgZXN0aW1hdGlvbiByZXN1bHRzLgoKCiMgUTIKQ2hhbmdlIHRoZSBzcGVjaWZpY2F0aW9uIG9mIHdlaWdodHMgbWF0cml4IHRvIGJpbmFyeSB2YWx1ZXMsIGkuZS4sIGRvIG5vdCByb3ctc3RhbmRhcmRpemUgdGhlIHdlaWdodHMgbWF0cml4LCBhbmQgZXN0aW1hdGUgdGhlIGFib3ZlIHNwYXRpYWwgRHVyYmluIG1vZGVsIGFnYWluLiBSZXBvcnQgeW91ciBlc3RpbWF0aW9uIHJlc3VsdHMuCgoKCiMgUmVmZXJlbmNlcwoKKiBbSW50cm9kdWN0aW9uIHRvIE5ldHdvcmsgQW5hbHlzaXMgd2l0aCBSXShodHRwczovL3d3dy5qZXNzZXNhZGxlci5jb20vcG9zdC9uZXR3b3JrLWFuYWx5c2lzLXdpdGgtci8pCiogW0ludHJvZHVjaW5nIHRpZHlncmFwaF0oaHR0cHM6Ly93d3cuZGF0YS1pbWFnaW5pc3QuY29tLzIwMTcvaW50cm9kdWNpbmctdGlkeWdyYXBoLykKKiBbSW50cm9kdWN0aW9uIHRvIHRpZHlncmFwaCAmIGdncmFwaF0oaHR0cHM6Ly93d3cucnB1YnMuY29tL1N0ZXZlbl9TdXJ5YS90aWR5Z3JhcGgtZ2dyYXBoKQoqIFtDb252ZXJ0IGEgZ3JhcGggdG8gYW4gYWRqYWNlbmN5IG1hdHJpeCBvciBhbiBlZGdlIGxpc3RdKGh0dHA6Ly9jbmV1cm9jdnMucm1raS5rZmtpLmh1L2lncmFwaC9kb2MvUi9jb252ZXJzaW9uLmh0bWwpCiogW1RpZHlncmFwaF0oaHR0cDovL3VzZXJzLmRpbWkudW5pdWQuaXQvfm1hc3NpbW8uZnJhbmNlc2NoZXQvbnMvc3lsbGFidXMvbWFrZS90aWR5Z3JhcGgvdGlkeWdyYXBoLmh0bWwpCiogW3Zpc05ldHdvcmtdKGh0dHBzOi8vZGF0YXN0b3JtLW9wZW4uZ2l0aHViLmlvL3Zpc05ldHdvcmsvKQoqIFtTb2NpYWwgbmV0d29yayBhbmFseXNpcyB3aXRoIFI6IERlc2NyaXB0aXZlIGFuYWx5c2lzXShodHRwOi8vcGFibG9iYXJiZXJhLmNvbS9iaWctZGF0YS11cGYvaHRtbC8wMmItbmV0d29ya3MtZGVzY3JpcHRpdmUtYW5hbHlzaXMuaHRtbCkKKiBbQmV0d2Vlbm5lc3MgY2VudHJhbGl0eV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQmV0d2Vlbm5lc3NfY2VudHJhbGl0eSkKKiBbSW1wb3J0IGEgTWF0cml4IGFzIGFuIGlncmFwaCBOZXR3b3JrXShodHRwczovL3JwdWJzLmNvbS9wam11cnBoeS8zMTA0NTkpCiogW0NsdXN0ZXJpbmcgY29lZmZpY2llbnRdKGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL0NsdXN0ZXJpbmdfY29lZmZpY2llbnQpCiogW0Fzc29ydGF0aXZpdHldKGh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpL0Fzc29ydGF0aXZpdHkp</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSFcyIgphdXRob3I6ICJMb3dzb24gTGksIFIwODMyMzAyMyIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGhpZ2hsaWdodDogdGFuZ28KICAgIG51bWJlcl9zZWN0aW9uczogeWVzCiAgICB0aGVtZTogc2ltcGxleAogICAgdG9jOiB5ZXMKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiB5ZXMKICAgICAgc21vb3RoX3Njcm9sbDogeWVzCiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogICAgdG9jOiB5ZXMKICBwZGZfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwplZGl0b3Jfb3B0aW9uczoKICBjaHVua19vdXRwdXRfdHlwZTogaW5saW5lCi0tLQoKYGBge3IgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBtZXNzYWdlID0gRkFMU0UpCmBgYAoKIyBMb2FkIHBhY2thZ2VzCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeSh0aWR5Z3JhcGgpCmxpYnJhcnkoaWdyYXBoKQpsaWJyYXJ5KHNwYXRpYWxyZWcpCmBgYAoKIyBJbXBvcnQgZGF0YQpgYGB7cn0KbG9hZCgiLi4vRGF0YS9kYXRhc2V0X25ldHdvcmtfaW50ZXJhY3Rpb25zLlJEYXRhIikKc3RyKGRhdGFzZXRfbGVjdHVyZTMpCmBgYApUaGUgZGF0YSBjb250YWlucyAyIGxpc3RzLgpgYGB7cn0KZGF0YXNldF9sZWN0dXJlM1tbMV1dICU+JSBoZWFkKCkKYGBgCgpUaGUgZmlzcnQgZWxlbWVudCBvZiB0aGUgbGlzdCBjb250YWlucyB0aGUgYWRqYWNlbmN5IG1hdHJpeC4KCmBgYHtyfQpkYXRhc2V0X2xlY3R1cmUzW1syXV0gJT4lIGhlYWQoKQpgYGAKCgojIFExClVzaW5nIHRoZSBkYXRhc2V0IGBkYXRhc2V0X25ldHdvcmtfaW50ZXJhY3Rpb25zYCBwcm92aWRlZCBpbiB0aGUgY291cnNlIGRlbW9uc3RyYXRpb24sIGVzdGltYXRlIHRoZSBzcGF0aWFsIER1cmJpbiBtb2RlbCB3aXRoIHRoZSByZWdyZXNzb3JzIFdYIGluY2x1ZGVkLiBSZXBvcnQgeW91ciBlc3RpbWF0aW9uIHJlc3VsdHMuCgoKIyBRMgpDaGFuZ2UgdGhlIHNwZWNpZmljYXRpb24gb2Ygd2VpZ2h0cyBtYXRyaXggdG8gYmluYXJ5IHZhbHVlcywgaS5lLiwgZG8gbm90IHJvdy1zdGFuZGFyZGl6ZSB0aGUgd2VpZ2h0cyBtYXRyaXgsIGFuZCBlc3RpbWF0ZSB0aGUgYWJvdmUgc3BhdGlhbCBEdXJiaW4gbW9kZWwgYWdhaW4uIFJlcG9ydCB5b3VyIGVzdGltYXRpb24gcmVzdWx0cy4KCgoKIyBSZWZlcmVuY2VzCgoqIFtJbnRyb2R1Y3Rpb24gdG8gTmV0d29yayBBbmFseXNpcyB3aXRoIFJdKGh0dHBzOi8vd3d3Lmplc3Nlc2FkbGVyLmNvbS9wb3N0L25ldHdvcmstYW5hbHlzaXMtd2l0aC1yLykKKiBbSW50cm9kdWNpbmcgdGlkeWdyYXBoXShodHRwczovL3d3dy5kYXRhLWltYWdpbmlzdC5jb20vMjAxNy9pbnRyb2R1Y2luZy10aWR5Z3JhcGgvKQoqIFtJbnRyb2R1Y3Rpb24gdG8gdGlkeWdyYXBoICYgZ2dyYXBoXShodHRwczovL3d3dy5ycHVicy5jb20vU3RldmVuX1N1cnlhL3RpZHlncmFwaC1nZ3JhcGgpCiogW0NvbnZlcnQgYSBncmFwaCB0byBhbiBhZGphY2VuY3kgbWF0cml4IG9yIGFuIGVkZ2UgbGlzdF0oaHR0cDovL2NuZXVyb2N2cy5ybWtpLmtma2kuaHUvaWdyYXBoL2RvYy9SL2NvbnZlcnNpb24uaHRtbCkKKiBbVGlkeWdyYXBoXShodHRwOi8vdXNlcnMuZGltaS51bml1ZC5pdC9+bWFzc2ltby5mcmFuY2VzY2hldC9ucy9zeWxsYWJ1cy9tYWtlL3RpZHlncmFwaC90aWR5Z3JhcGguaHRtbCkKKiBbdmlzTmV0d29ya10oaHR0cHM6Ly9kYXRhc3Rvcm0tb3Blbi5naXRodWIuaW8vdmlzTmV0d29yay8pCiogW1NvY2lhbCBuZXR3b3JrIGFuYWx5c2lzIHdpdGggUjogRGVzY3JpcHRpdmUgYW5hbHlzaXNdKGh0dHA6Ly9wYWJsb2JhcmJlcmEuY29tL2JpZy1kYXRhLXVwZi9odG1sLzAyYi1uZXR3b3Jrcy1kZXNjcmlwdGl2ZS1hbmFseXNpcy5odG1sKQoqIFtCZXR3ZWVubmVzcyBjZW50cmFsaXR5XShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9CZXR3ZWVubmVzc19jZW50cmFsaXR5KQoqIFtJbXBvcnQgYSBNYXRyaXggYXMgYW4gaWdyYXBoIE5ldHdvcmtdKGh0dHBzOi8vcnB1YnMuY29tL3BqbXVycGh5LzMxMDQ1OSkKKiBbQ2x1c3RlcmluZyBjb2VmZmljaWVudF0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2x1c3RlcmluZ19jb2VmZmljaWVudCkKKiBbQXNzb3J0YXRpdml0eV0oaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQXNzb3J0YXRpdml0eSk=</div>
 
 
 </div>

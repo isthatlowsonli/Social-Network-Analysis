@@ -42,6 +42,12 @@ The data contains 2 lists.
 dataset_lecture3[[1]] %>% head()
 ```
 
+The fisrt element of the list contains the adjacency matrix.
+
+```{r}
+dataset_lecture3[[2]] %>% head()
+```
+
 
 # Q1
 Using the dataset `dataset_network_interactions` provided in the course demonstration, estimate the spatial Durbin model with the regressors WX included. Report your estimation results.

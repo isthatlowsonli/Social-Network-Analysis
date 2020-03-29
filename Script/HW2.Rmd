@@ -195,7 +195,7 @@ type = "lag"
 
 # References
 
-* [Class nb (spdep) from class igraph](http://r-sig-geo.2731867.n2.nabble.com/Class-nb-spdep-from-class-igraph-td7582350.html)
+* [Class nb (spdep) from class igraph](http://r-sig-geo.2731867.n2.nabble.com/Class-nb-spdep-from-class-igraph-td7582350.htmlssh -T git@github.com)
 * [nb2listw](https://www.rdocumentation.org/packages/spdep/versions/1.1-3/topics/nb2listw)
 * [Spatial simultaneous autoregressive model estimation by maximum likelihood](https://r-spatial.github.io/spatialreg/reference/ML_models.html#examples)
 * [Using igraph for spatial weights as graphs](https://cran.r-project.org/web/packages/spdep/vignettes/nb_igraph.html)

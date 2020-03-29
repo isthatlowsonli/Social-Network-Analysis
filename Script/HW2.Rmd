@@ -76,6 +76,7 @@ network <- igraph::graph.adjacency(dataset_lecture3[[2]],
 
 The network should look like this 
 ```{r}
+# visualize the network
 network %>% visNetwork::visIgraph(igraph = .)
 ```
 

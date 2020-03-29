@@ -29,7 +29,11 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(tidyverse)
 library(tidygraph)
 library(igraph)
+library(visNetwork)
+library(spdep)
 library(spatialreg)
+library(igraph)
+library(ade4)
 ```
 
 # Import data
@@ -42,32 +46,155 @@ The data contains 2 lists.
 dataset_lecture3[[1]] %>% head()
 ```
 
-The fisrt element of the list contains the adjacency matrix.
+The fisrt element of the list contains the variables of students.
 
 ```{r}
 dataset_lecture3[[2]] %>% head()
 ```
-
+The second element of the list contains the adjacency matrix
 
 # Q1
-Using the dataset `dataset_network_interactions` provided in the course demonstration, estimate the spatial Durbin model with the regressors WX included. Report your estimation results.
+Using the dataset `dataset_network_interactions` provided in the course demonstration, estimate the spatial Durbin model with the regressors $W_{x}$ included. Report your estimation results.
+
+## Prepare data
+
+Strategy:
+We are using `lagsarlm` (Spatial simultaneous autoregressive model estimation by maximum likelihood) in `spatialreg`.
+We need to prepare:
+
+1) The dataframe with variable name 
+2) The weighted matrix passed to `listw` argument in `lagsarlm` function
+    1) The `nb2listw` function from `spdep` pacakage supplements a neighbours list with spatial weights for the chosen coding scheme. 
+    2) It seems like there's no simple way to construct the `nb` object needed for `nb2listw`, we use `neig` function from `ade4` package to convert the edge list to `neig` and use `neig2nb` function from `ade4` package to convert the `neig` to `nb` object.
+  
+```{r echo=TRUE}
+# construct network from adjacency matrix 
+network <- igraph::graph.adjacency(dataset_lecture3[[2]],
+  mode = c("directed"), weighted = NULL, diag = FALSE
+)
+```
+
+The network should look like this 
+```{r}
+network %>% visNetwork::visIgraph(igraph = .)
+```
+
+
+```{r echo=TRUE}
+# convert igraph network from edgelist to class nb
+# igraph -> neig -> nb
+networknb <-
+  network %>%
+  igraph::get.edgelist() %>%
+  ade4::neig(edges = .) %>%
+  ade4::neig2nb()
+```
+
+This will cause error since some of people are not friends of others.
+
+```{r echo=TRUE}
+# randomly assign a friend for those 93 isolated(without any link).
+iso <- c(
+  4, 9, 26, 31, 33, 34, 36, 49, 54, 61, 62, 69, 73, 75, 77, 81, 83, 84, 88, 89, 95, 96, 100,
+  103, 108, 111, 114, 117, 118, 126, 128, 131, 132, 135, 137, 138, 141, 142, 151, 153,
+  158, 159, 169, 170, 171, 175, 178, 181, 182, 184, 193, 198, 200, 203, 209, 213, 219,
+  221, 223, 231, 242, 244, 246, 248, 249, 251, 252, 253, 255, 257, 259, 267, 269, 272,
+  274, 275, 277, 280, 284, 285, 286, 289, 292, 293, 296, 297, 301, 309, 315, 317, 318,
+  330, 334
+)
+
+set.seed(20200319)
+
+for (i in 1:93) {
+  networknb[[iso[i]]] <- sample(1:336, 1)
+}
+```
+
+```{r echo=TRUE}
+# B is the basic binary coding,
+# W is row standardised (sums over all links to n),
+# C is globally standardised (sums over all links to n),
+# U is equal to C divided by the number of neighbours (sums over all links to unity), while S is the variance-stabilizing coding scheme proposed by Tiefelsdorf et al. 1999, p. 167-168 (sums over all links to n).
+
+lw <- spdep::nb2listw(networknb, glist = NULL, style = "W", zero.policy = T)
+
+variable <- data.frame()
+variable <- rbind(variable, dataset_lecture3[[1]])
+colnames(variable) <- c(
+  "gpa", "smoke_freq", "drink", "club", "exer",
+  "male", "black", "hisp", "asian", "race_other",
+  "both_par", "less_hs", "more_hs", "momedu_miss",
+  "Prof", "Home", "job_other"
+)
+```
+
+## Regression results 
+
+### OLS 
+```{r echo=TRUE}
+lm(
+  gpa ~ male + black + hisp + asian + race_other
+  + both_par + less_hs + more_hs
+  + momedu_miss + Prof + Home + job_other,
+  data = variable
+) %>% summary()
+```
+
+## SAR
+### Default: spatial lag model 
+```{r}
+lagsarlm(gpa ~ male + black + hisp + asian + race_other
+  + both_par + less_hs + more_hs
+  + momedu_miss + Prof + Home + job_other,
+data = variable, listw = lw, method = "eigen",
+quiet = FALSE, zero.policy = TRUE, tol.solve = 1e-13,
+type = "lag"
+) %>% summary()
+```
+
+### Durbin: spatial Durbin model 
+```{r}
+lagsarlm(gpa ~ male + black + hisp + asian + race_other
+  + both_par + less_hs + more_hs
+  + momedu_miss + Prof + Home + job_other,
+data = variable, listw = lw, method = "eigen",Durbin = TRUE,
+quiet = FALSE, zero.policy = TRUE, tol.solve = 1e-13,
+type = "lag"
+) %>% summary()
+```
 
 
 # Q2
 Change the specification of weights matrix to binary values, i.e., do not row-standardize the weights matrix, and estimate the above spatial Durbin model again. Report your estimation results.
 
+## Prepare data 
+```{r echo=TRUE}
+# Change the specification of weights matrix to binary values
+
+# B is the basic binary coding,
+# W is row standardised (sums over all links to n),
+# C is globally standardised (sums over all links to n),
+# U is equal to C divided by the number of neighbours (sums over all links to unity), while S is the variance-stabilizing coding scheme proposed by Tiefelsdorf et al. 1999, p. 167-168 (sums over all links to n).
+
+lw_b <- spdep::nb2listw(networknb, glist = NULL, style = "B", zero.policy = T)
+
+```
+
+## SAR
+### Durbin: spatial Durbin model 
+```{r}
+lagsarlm(gpa ~ male + black + hisp + asian + race_other
+  + both_par + less_hs + more_hs
+  + momedu_miss + Prof + Home + job_other,
+data = variable, listw = lw_b, method = "eigen",Durbin = TRUE,
+quiet = FALSE, zero.policy = TRUE, tol.solve = 1e-13,
+type = "lag"
+) %>% summary()
+```
 
 
 # References
 
-* [Introduction to Network Analysis with R](https://www.jessesadler.com/post/network-analysis-with-r/)
-* [Introducing tidygraph](https://www.data-imaginist.com/2017/introducing-tidygraph/)
-* [Introduction to tidygraph & ggraph](https://www.rpubs.com/Steven_Surya/tidygraph-ggraph)
-* [Convert a graph to an adjacency matrix or an edge list](http://cneurocvs.rmki.kfki.hu/igraph/doc/R/conversion.html)
-* [Tidygraph](http://users.dimi.uniud.it/~massimo.franceschet/ns/syllabus/make/tidygraph/tidygraph.html)
-* [visNetwork](https://datastorm-open.github.io/visNetwork/)
-* [Social network analysis with R: Descriptive analysis](http://pablobarbera.com/big-data-upf/html/02b-networks-descriptive-analysis.html)
-* [Betweenness centrality](https://en.wikipedia.org/wiki/Betweenness_centrality)
-* [Import a Matrix as an igraph Network](https://rpubs.com/pjmurphy/310459)
-* [Clustering coefficient](https://en.wikipedia.org/wiki/Clustering_coefficient)
-* [Assortativity](https://en.wikipedia.org/wiki/Assortativity)
+* [nb2listw](https://www.rdocumentation.org/packages/spdep/versions/1.1-3/topics/nb2listw)
+* [Spatial simultaneous autoregressive model estimation by maximum likelihood](https://r-spatial.github.io/spatialreg/reference/ML_models.html#examples)
+* [Using igraph for spatial weights as graphs](https://cran.r-project.org/web/packages/spdep/vignettes/nb_igraph.html)

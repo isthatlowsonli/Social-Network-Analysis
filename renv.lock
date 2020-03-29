@@ -72,6 +72,13 @@
       "Repository": "CRAN",
       "Hash": "5ef9c463e30f8aea49c293e4b8d9d7be"
     },
+    "ade4": {
+      "Package": "ade4",
+      "Version": "1.7-15",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "afb4cb7b51681e837275748658f28738"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
@@ -352,6 +359,13 @@
       "Repository": "CRAN",
       "Hash": "2d7691222f82f41e93f6d30f169bd5e1"
     },
+    "htmlwidgets": {
+      "Package": "htmlwidgets",
+      "Version": "1.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "41bace23583fbc25089edae324de2dc3"
+    },
     "httr": {
       "Package": "httr",
       "Version": "1.4.1",
@@ -477,6 +491,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "fa3ed60396b6998d0427c57dab90fba4"
+    },
+    "pixmap": {
+      "Package": "pixmap",
+      "Version": "0.4-11",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "908b83da165aa591d7f38fe0ad376f10"
     },
     "pkgbuild": {
       "Package": "pkgbuild",
@@ -785,6 +806,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ce4f6271baa94776db692f1cb2055bee"
+    },
+    "visNetwork": {
+      "Package": "visNetwork",
+      "Version": "2.0.9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "12545f2acf49d1d346d075580122d89c"
     },
     "whisker": {
       "Package": "whisker",

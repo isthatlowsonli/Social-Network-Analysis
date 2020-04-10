@@ -1,0 +1,77 @@
+---
+title: "HW3"
+author: "Lowson Li, R08323023"
+output:
+  html_notebook:
+    code_folding: show
+    highlight: tango
+    number_sections: yes
+    theme: simplex
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  html_document:
+    df_print: paged
+    toc: yes
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+# Load packages
+```{r}
+library(tidyverse)
+library(igraph)
+library(visNetwork)
+library(ergm)
+library(sna)
+library(latentnet)
+library(network)
+```
+
+# Import data 
+```{r}
+load("~/Social-Network-Analysis/Script/demonstration_codes_export/dataset_ergmm.RData")
+```
+
+Using the data set dataset_ergmm provided in the course demonstration to finish the following questions:
+
+# Q1
+
+1. Estimate the model1 in the course demonstration but change the specification of latent positions from the euclidean distance to the inner product (in two dimensions). Report the summary of model fit and plot your estimation results of latent positions.
+
+```{r}
+model1_fomula <- formula(net ~ bilinear(d = 2))
+model1 <- ergmm(model1_fomula,
+  control = ergmm.control(burnin = 100000, sample.size = 10000, interval = 5)
+)
+summary(model1)
+```
+```{r}
+plot(model1, pie = TRUE, vertex.cex = 2.5) 
+```
+
+# Q2
+
+2. Estimate the model2 in the course demonstration and specify the latent positions in three clusters. Report the summary of model fit and plot your estimation results of latent positions and clusters.
+
+```{r}
+model2_fomula <- formula(net ~ nodematch("white") + nodematch("male") +
+  euclidean(d = 3, G = 3))
+model2 <- ergmm(model2_fomula,
+  control = ergmm.control(burnin = 100000, sample.size = 10000, interval = 5)
+)
+summary(model2)
+```
+
+```{r}
+plot(model2, pie = TRUE, vertex.cex = 2.5) 
+```
+
+

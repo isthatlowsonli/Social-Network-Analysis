@@ -15,6 +15,7 @@ The concept and the coding strategy are described on the first section of each f
 |1|[Demo](https://isthatlowsonli.github.io/Social-Network-Analysis/Script/HW1.nb.html)|[Source](https://github.com/isthatlowsonli/Social-Network-Analysis/blob/master/Script/HW1.Rmd)|
 |2|[Demo](https://isthatlowsonli.github.io/Social-Network-Analysis/Script/HW2.nb.html)|[Source](https://github.com/isthatlowsonli/Social-Network-Analysis/blob/master/Script/HW2.Rmd)|
 |3|[Demo](https://isthatlowsonli.github.io/Social-Network-Analysis/Script/HW3.nb.html)|[Source](https://github.com/isthatlowsonli/Social-Network-Analysis/blob/master/Script/HW3.Rmd)|
+|4|[Demo](https://isthatlowsonli.github.io/Social-Network-Analysis/Script/HW4.nb.html)|[Source](https://github.com/isthatlowsonli/Social-Network-Analysis/blob/master/Script/HW4.Rmd)|
 
 ## Getting Started
 

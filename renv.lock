@@ -261,6 +261,13 @@
       "Repository": "CRAN",
       "Hash": "1a1139de15eff8d833086de8ad7cb377"
     },
+    "ergm.count": {
+      "Package": "ergm.count",
+      "Version": "3.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f27731577f0b62a92bbb9ae0ada3988b"
+    },
     "evaluate": {
       "Package": "evaluate",
       "Version": "0.14",
@@ -520,6 +527,13 @@
       "Repository": "CRAN",
       "Hash": "66c8bf5a34bd79bc779922230812de12"
     },
+    "networkDynamic": {
+      "Package": "networkDynamic",
+      "Version": "0.10.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e5dc15cd4d70701f7e99ce95f53c7466"
+    },
     "nlme": {
       "Package": "nlme",
       "Version": "3.1-145",
@@ -772,6 +786,13 @@
       "Repository": "CRAN",
       "Hash": "4b550ca01798c27b717b7e3cd4d0f4b9"
     },
+    "statnet": {
+      "Package": "statnet",
+      "Version": "2019.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "29f1ce50eb7d1294caafef2c07ee3b66"
+    },
     "statnet.common": {
       "Package": "statnet.common",
       "Version": "4.3.0",
@@ -799,6 +820,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "507f3116a38d37ad330a038b3be07b66"
+    },
+    "tergm": {
+      "Package": "tergm",
+      "Version": "3.6.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "6f60d625fd1c55eb93b3e49cb5ce0803"
     },
     "testthat": {
       "Package": "testthat",
@@ -848,6 +876,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "f50614d2145ba1012b62ff75f2129d5b"
+    },
+    "tsna": {
+      "Package": "tsna",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ed88471c4c1ef63d30c0c99efea20dd1"
     },
     "units": {
       "Package": "units",

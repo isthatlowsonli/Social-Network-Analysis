@@ -1,0 +1,111 @@
+---
+title: "HW4"
+author: "Lowson Li, R08323023"
+output:
+  html_notebook:
+    code_folding: show
+    highlight: tango
+    number_sections: yes
+    theme: simplex
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  html_document:
+    df_print: paged
+    toc: yes
+  pdf_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+# Load packages
+```{r}
+library(tidyverse)
+library(knitr)
+library(statnet)
+library(ergm)
+```
+
+# Import data 
+```{r}
+data(package='ergm')
+data(florentine)
+```
+
+# Summary data 
+
+## Plot the network
+```{r}
+plot(flomarriage, main="Florentine Marriage", cex.main=0.8)
+```
+
+## Edges & triangles
+```{r}
+summary(flomarriage ~ edges + triangle)
+```
+
+
+Using the data set `flomarriage` provided in the R package `ergm` to finish the following questions:
+
+# Q1
+
+1. Estimate an ERGM for `flomarriage` network with the specification of **absolute difference in family’s wealth**, the number of edges, and triangles. Report your estimation result.
+
+```{r}
+model1 <- ergm(flomarriage ~  absdiff("wealth") + edges + triangle) 
+model1 %>% summary()
+```
+
+To get a better sense of how less likely it is for a tie to form, we can translate our log-odds into a probability.
+
+```{r}
+knitr::kable(plogis(coef(model1)))
+```
+
+Model Diagnostics
+```{r}
+mcmc.diagnostics(model1)
+```
+
+
+# Q2
+
+2. Count separately how many two stars and three stars in the flomarriage network and estimate an ERGM for `flomarriage` network with the specification of the number of edges, two stars and three stars. Report your estimation result.
+
+```{r}
+summary(flomarriage ~ kstar(2:3))
+```
+
+
+```{r}
+model2 <- ergm(flomarriage ~ edges + kstar(2:3)) 
+model2 %>% summary()
+```
+
+To get a better sense of how less likely it is for a tie to form, we can translate our log-odds into a probability.
+
+```{r}
+knitr::kable(plogis(coef(model2)))
+```
+
+
+Model Diagnostics
+
+```{r}
+mcmc.diagnostics(model2)
+```
+
+
+# References
+
+[ergm-terms](https://www.rdocumentation.org/packages/ergm/versions/3.9.4/topics/ergm-terms)
+
+[Exponential Random Graph Modeling](https://rpubs.com/johnsonam007/lab3ERGM)
+
+[Star (graph theory)](https://en.wikipedia.org/wiki/Star_(graph_theory))

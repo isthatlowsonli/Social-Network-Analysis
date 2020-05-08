@@ -2983,11 +2983,9 @@ div.tocify {
 <h1><span class="header-section-number">1</span> Load packages</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGtuaXRyKVxubGlicmFyeShzdGF0bmV0KVxubGlicmFyeShlcmdtKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KFJTaWVuYSlcbmBgYCJ9 -->
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(knitr)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(statnet)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(ergm)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(RSiena)</a></code></pre></div>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2996,21 +2994,626 @@ div.tocify {
 <h1><span class="header-section-number">2</span> Import data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuP3M1MFxuYGBgIn0= -->
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">?s50</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="description" class="section level2">
+<h2><span class="header-section-number">2.1</span> Description</h2>
+<p>An excerpt of the network, alcohol consumption, and smoking data for 50 randomly chosen girls from the Teenage Friends and Lifestyle Study data set. Useful as a small example of network and behaviour, for which models can be fitted quickly, and for which there are no missing values.</p>
+</div>
+<div id="format" class="section level2">
+<h2><span class="header-section-number">2.2</span> Format</h2>
+<p><strong>Adjacency matrix</strong> for the network at <strong>time points 1, 2, 3</strong>; 50 by 3 matrices of alcohol consumption and smoking data for the three time points.</p>
+</div>
+<div id="glimpse-of-data" class="section level2">
+<h2><span class="header-section-number">2.3</span> Glimpse of data</h2>
+<p>Data class</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuczUwMSAlPiUgY2xhc3NcbmBgYCJ9 -->
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">s501 <span class="op">%&gt;%</span><span class="st"> </span>class</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibWF0cml4XCJcbiJ9 -->
+<pre><code>[1] &quot;matrix&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>First wave data</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2xpbXBzZShzNTAxKVxuYGBgIn0= -->
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">glimpse</span>(s501)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIGludCBbMTo1MCwgMTo1MF0gMCAwIDAgMCAwIDAgMCAwIDAgMCAuLi5cbiAtIGF0dHIoKiwgXCJkaW1uYW1lc1wiKT1MaXN0IG9mIDJcbiAgLi4kIDogY2hyIFsxOjUwXSBcIjFcIiBcIjJcIiBcIjNcIiBcIjRcIiAuLi5cbiAgLi4kIDogY2hyIFsxOjUwXSBcIlYxXCIgXCJWMlwiIFwiVjNcIiBcIlY0XCIgLi4uXG4ifQ== -->
+<pre><code> int [1:50, 1:50] 0 0 0 0 0 0 0 0 0 0 ...
+ - attr(*, &quot;dimnames&quot;)=List of 2
+  ..$ : chr [1:50] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+  ..$ : chr [1:50] &quot;V1&quot; &quot;V2&quot; &quot;V3&quot; &quot;V4&quot; ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Alcohol variables</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2xpbXBzZShzNTBhKVxuYGBgIn0= -->
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">glimpse</span>(s50a)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIGludCBbMTo1MCwgMTozXSAzIDIgMiAyIDMgNCA0IDQgMiA0IC4uLlxuIC0gYXR0cigqLCBcImRpbW5hbWVzXCIpPUxpc3Qgb2YgMlxuICAuLiQgOiBjaHIgWzE6NTBdIFwiMVwiIFwiMlwiIFwiM1wiIFwiNFwiIC4uLlxuICAuLiQgOiBjaHIgWzE6M10gXCJWMVwiIFwiVjJcIiBcIlYzXCJcbiJ9 -->
+<pre><code> int [1:50, 1:3] 3 2 2 2 3 4 4 4 2 4 ...
+ - attr(*, &quot;dimnames&quot;)=List of 2
+  ..$ : chr [1:50] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+  ..$ : chr [1:3] &quot;V1&quot; &quot;V2&quot; &quot;V3&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="prepare-data" class="section level2">
+<h2><span class="header-section-number">2.4</span> Prepare data</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDaGVjayB3aGF0IHdlIGhhdmVcbm15ZGF0YVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Check what we have</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">mydata</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGVwZW5kZW50IHZhcmlhYmxlczogIGZyaWVuZHNoaXAgXG5OdW1iZXIgb2Ygb2JzZXJ2YXRpb25zOiAzIFxuXG5Ob2Rlc2V0ICAgICAgICAgICAgICAgICAgQWN0b3JzIFxuTnVtYmVyIG9mIG5vZGVzICAgICAgICAgICAgICA1MCBcblxuRGVwZW5kZW50IHZhcmlhYmxlIGZyaWVuZHNoaXAgICAgICBcblR5cGUgICAgICAgICAgICAgICBvbmVNb2RlICAgICAgICAgXG5PYnNlcnZhdGlvbnMgICAgICAgMyAgICAgICAgICAgICAgIFxuTm9kZXNldCAgICAgICAgICAgIEFjdG9ycyAgICAgICAgICBcbkRlbnNpdGllcyAgICAgICAgICAwLjA0NiAwLjA0NyAwLjA1XG5cbkNvbnN0YW50IGNvdmFyaWF0ZXM6ICBzbW9rZTEgXG5DaGFuZ2luZyBjb3ZhcmlhdGVzOiAgYWxjb2hvbCBcbiJ9 -->
+<pre><code>Dependent variables:  friendship 
+Number of observations: 3 
+
+Nodeset                  Actors 
+Number of nodes              50 
+
+Dependent variable friendship      
+Type               oneMode         
+Observations       3               
+Nodeset            Actors          
+Densities          0.046 0.047 0.05
+
+Constant covariates:  smoke1 
+Changing covariates:  alcohol </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="specify-the-effects" class="section level2">
+<h2><span class="header-section-number">2.5</span> Specify the effects</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXllZmZcblxuYGBgIn0= -->
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">myeff</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgZWZmZWN0TmFtZSAgICAgICAgICAgICAgICAgICAgICAgICAgaW5jbHVkZSBmaXggICB0ZXN0ICBpbml0aWFsVmFsdWUgcGFybVxuMSAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMSkgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjY5NjA0ICAgMCAgIFxuMiAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyAgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgIC0xLjQ2NzcwICAgMCAgIFxuNCAgcmVjaXByb2NpdHkgICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNSAgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAgMy1jeWNsZXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNyAgc21va2UxIHNpbWlsYXJpdHkgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOCAgYWxjb2hvbCBhbHRlciAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOSAgYWxjb2hvbCBlZ28gICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuMTAgYWxjb2hvbCBlZ28geCBhbGNvaG9sIGFsdGVyICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuIn0= -->
+<pre><code>   effectName                          include fix   test  initialValue parm
+1  constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2  constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3  outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4  reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5  transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6  3-cycles                            TRUE    FALSE FALSE    0.00000   0   
+7  smoke1 similarity                   TRUE    FALSE FALSE    0.00000   0   
+8  alcohol alter                       TRUE    FALSE FALSE    0.00000   0   
+9  alcohol ego                         TRUE    FALSE FALSE    0.00000   0   
+10 alcohol ego x alcohol alter         TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="algorithm-settings" class="section level2">
+<h2><span class="header-section-number">2.6</span> Algorithm settings</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlhbGdvcml0aG0gPC0gc2llbmFBbGdvcml0aG1DcmVhdGUoIHByb2puYW1lID0gJ3M1MCcgKVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">myalgorithm &lt;-<span class="st"> </span><span class="kw">sienaAlgorithmCreate</span>( <span class="dt">projname =</span> <span class="st">'s50'</span> )</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoic2llbmEwNyB3aWxsIGNyZWF0ZSBhbiBvdXRwdXQgZmlsZSBzNTAudHh0IC5cbiJ9 -->
+<pre><code>siena07 will create an output file s50.txt .</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="estimation" class="section level1">
+<h1><span class="header-section-number">3</span> Estimation</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">ans</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICAgU3RhbmRhcmQgICBDb252ZXJnZW5jZSBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFcnJvciAgICAgIHQtcmF0aW8gICBcblxuUmF0ZSBwYXJhbWV0ZXJzOiBcbiAgMC4xICAgICAgUmF0ZSBwYXJhbWV0ZXIgcGVyaW9kIDEgICAgICA2LjU2NjMgICggMS4wODg5ICAgKSAgICAgICAgICAgICBcbiAgMC4yICAgICAgUmF0ZSBwYXJhbWV0ZXIgcGVyaW9kIDIgICAgICA1LjE4MTMgICggMC44ODQyICAgKSAgICAgICAgICAgICBcblxuT3RoZXIgcGFyYW1ldGVyczogXG4gIDEuICBldmFsIG91dGRlZ3JlZSAoZGVuc2l0eSkgICAgICAgICAtMi43MjcxICAoIDAuMTE5MiAgICkgICAgMC4wMDQ0ICAgXG4gIDIuICBldmFsIHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgMi40NDE4ICAoIDAuMjE5OSAgICkgICAgMC4wMTU4ICAgXG4gIDMuICBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgMC42NjAwICAoIDAuMTQwMSAgICkgICAgMC4wMjIwICAgXG4gIDQuICBldmFsIDMtY3ljbGVzICAgICAgICAgICAgICAgICAgICAtMC4xMDk2ICAoIDAuMjc3NiAgICkgICAgMC4wMTk4ICAgXG4gIDUuICBldmFsIHNtb2tlMSBzaW1pbGFyaXR5ICAgICAgICAgICAgMC4yNDU3ICAoIDAuMjA0MiAgICkgICAtMC4wOTAyICAgXG4gIDYuICBldmFsIGFsY29ob2wgYWx0ZXIgICAgICAgICAgICAgICAtMC4wMjAwICAoIDAuMDY1OSAgICkgICAgMC4wNjEyICAgXG4gIDcuICBldmFsIGFsY29ob2wgZWdvICAgICAgICAgICAgICAgICAgMC4wMzIzICAoIDAuMDgwMCAgICkgICAgMC4wNDY0ICAgXG4gIDguICBldmFsIGFsY29ob2wgZWdvIHggYWxjb2hvbCBhbHRlciAgMC4xMjcwICAoIDAuMDUxNyAgICkgICAgMC4wNjg5ICAgXG5cbk92ZXJhbGwgbWF4aW11bSBjb252ZXJnZW5jZSByYXRpbzogICAgMC4xMjE4IFxuXG5cblRvdGFsIG9mIDI2NzYgaXRlcmF0aW9uIHN0ZXBzLlxuIn0= -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                       Estimate   Standard   Convergence 
+                                                    Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1      6.5663  ( 1.0889   )             
+  0.2      Rate parameter period 2      5.1813  ( 0.8842   )             
+
+Other parameters: 
+  1.  eval outdegree (density)         -2.7271  ( 0.1192   )    0.0044   
+  2.  eval reciprocity                  2.4418  ( 0.2199   )    0.0158   
+  3.  eval transitive triplets          0.6600  ( 0.1401   )    0.0220   
+  4.  eval 3-cycles                    -0.1096  ( 0.2776   )    0.0198   
+  5.  eval smoke1 similarity            0.2457  ( 0.2042   )   -0.0902   
+  6.  eval alcohol alter               -0.0200  ( 0.0659   )    0.0612   
+  7.  eval alcohol ego                  0.0323  ( 0.0800   )    0.0464   
+  8.  eval alcohol ego x alcohol alter  0.1270  ( 0.0517   )    0.0689   
+
+Overall maximum convergence ratio:    0.1218 
+
+
+Total of 2676 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="check-convergence" class="section level1">
+<h1><span class="header-section-number">4</span> Check convergence</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGb3IgY2hlY2tpbmcgY29udmVyZ2VuY2UsIGxvb2sgYXQgdGhlXG4jICdPdmVyYWxsIG1heGltdW0gY29udmVyZ2VuY2UgcmF0aW8nIG1lbnRpb25lZCB1bmRlciB0aGUgcGFyYW1ldGVyIGVzdGltYXRlcy5cbiMgSXQgY2FuIGFsc28gYmUgc2hvd24gYnkgcmVxdWVzdGluZ1xuYW5zJHRjb252Lm1heFxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># For checking convergence, look at the</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co"># 'Overall maximum convergence ratio' mentioned under the parameter estimates.</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co"># It can also be shown by requesting</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">ans<span class="op">$</span>tconv.max</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgIFssMV1cblsxLF0gMC4xMjE4NDk1XG4ifQ== -->
+<pre><code>          [,1]
+[1,] 0.1218495</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 <div id="q1" class="section level1">
-<h1><span class="header-section-number">3</span> Q1</h1>
+<h1><span class="header-section-number">5</span> Q1</h1>
+<div id="a" class="section level2">
+<h2><span class="header-section-number">5.1</span> 1a</h2>
+<p>Drop the effect of smoke1 similarity and estimate the model again. Do this by the function setEffects() using the <code>include</code> parameter. Give the changed effects object and the new answer object new names, such as effects1 and ans1, to distinguish them.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGVjayB0aGUgY3VycmVudCBlZmZlY3Qgc2V0dGluZyBcbm15ZWZmXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># check the current effect setting </span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">myeff</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgZWZmZWN0TmFtZSAgICAgICAgICAgICAgICAgICAgICAgICAgaW5jbHVkZSBmaXggICB0ZXN0ICBpbml0aWFsVmFsdWUgcGFybVxuMSAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMSkgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjY5NjA0ICAgMCAgIFxuMiAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyAgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgIC0xLjQ2NzcwICAgMCAgIFxuNCAgcmVjaXByb2NpdHkgICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNSAgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAgMy1jeWNsZXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNyAgc21va2UxIHNpbWlsYXJpdHkgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOCAgYWxjb2hvbCBhbHRlciAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOSAgYWxjb2hvbCBlZ28gICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuMTAgYWxjb2hvbCBlZ28geCBhbGNvaG9sIGFsdGVyICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuIn0= -->
+<pre><code>   effectName                          include fix   test  initialValue parm
+1  constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2  constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3  outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4  reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5  transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6  3-cycles                            TRUE    FALSE FALSE    0.00000   0   
+7  smoke1 similarity                   TRUE    FALSE FALSE    0.00000   0   
+8  alcohol alter                       TRUE    FALSE FALSE    0.00000   0   
+9  alcohol ego                         TRUE    FALSE FALSE    0.00000   0   
+10 alcohol ego x alcohol alter         TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Use the similar specification in <code>includeEffect()</code>, and the change the argument <code>include = FALSE</code> to turn off the effect.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0czEgPC0gc2V0RWZmZWN0KG15ZWZmLHNpbVgsaW50ZXJhY3Rpb24xID0gXCJzbW9rZTFcIiwgaW5jbHVkZSA9IEZBTFNFKVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">effects1 &lt;-<span class="st"> </span><span class="kw">setEffect</span>(myeff,simX,<span class="dt">interaction1 =</span> <span class="st">&quot;smoke1&quot;</span>, <span class="dt">include =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGVmZmVjdE5hbWUgICBpbmNsdWRlICAgICAgZml4ICAgICAgICAgIHRlc3QgICAgICAgICBpbml0aWFsVmFsdWVcbls2XSBwYXJtICAgICAgICBcbjwwIHJvd3M+IChvciAwLWxlbmd0aCByb3cubmFtZXMpXG4ifQ== -->
+<pre><code>[1] effectName   include      fix          test         initialValue
+[6] parm        
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Check the new effect settings.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0czFcblxuYGBgIn0= -->
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">effects1</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBlZmZlY3ROYW1lICAgICAgICAgICAgICAgICAgICAgICAgICBpbmNsdWRlIGZpeCAgIHRlc3QgIGluaXRpYWxWYWx1ZSBwYXJtXG4xIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDEpIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgNC42OTYwNCAgIDAgICBcbjIgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyBvdXRkZWdyZWUgKGRlbnNpdHkpICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgLTEuNDY3NzAgICAwICAgXG40IHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjUgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAzLWN5Y2xlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG43IGFsY29ob2wgYWx0ZXIgICAgICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjggYWxjb2hvbCBlZ28gICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOSBhbGNvaG9sIGVnbyB4IGFsY29ob2wgYWx0ZXIgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG4ifQ== -->
+<pre><code>  effectName                          include fix   test  initialValue parm
+1 constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2 constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3 outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4 reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5 transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6 3-cycles                            TRUE    FALSE FALSE    0.00000   0   
+7 alcohol alter                       TRUE    FALSE FALSE    0.00000   0   
+8 alcohol ego                         TRUE    FALSE FALSE    0.00000   0   
+9 alcohol ego x alcohol alter         TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Estimate the new model</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zMVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">ans1</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICAgU3RhbmRhcmQgICBDb252ZXJnZW5jZSBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFcnJvciAgICAgIHQtcmF0aW8gICBcblxuUmF0ZSBwYXJhbWV0ZXJzOiBcbiAgMC4xICAgICAgUmF0ZSBwYXJhbWV0ZXIgcGVyaW9kIDEgICAgICA2LjUyODIgICggMS4xMTgzICAgKSAgICAgICAgICAgICBcbiAgMC4yICAgICAgUmF0ZSBwYXJhbWV0ZXIgcGVyaW9kIDIgICAgICA1LjE1ODIgICggMC44NzI1ICAgKSAgICAgICAgICAgICBcblxuT3RoZXIgcGFyYW1ldGVyczogXG4gIDEuICBldmFsIG91dGRlZ3JlZSAoZGVuc2l0eSkgICAgICAgICAtMi43MDMzICAoIDAuMTIyNCAgICkgICAtMC4wMTc1ICAgXG4gIDIuICBldmFsIHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgMi40MjI0ICAoIDAuMjE1MiAgICkgICAtMC4wODQxICAgXG4gIDMuICBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgMC42NTQ5ICAoIDAuMTQwMyAgICkgICAtMC4wMTM4ICAgXG4gIDQuICBldmFsIDMtY3ljbGVzICAgICAgICAgICAgICAgICAgICAtMC4wOTA3ICAoIDAuMjczNSAgICkgICAtMC4wMTQ3ICAgXG4gIDUuICBldmFsIGFsY29ob2wgYWx0ZXIgICAgICAgICAgICAgICAtMC4wNDU2ICAoIDAuMDY5OCAgICkgICAgMC4wMDU5ICAgXG4gIDYuICBldmFsIGFsY29ob2wgZWdvICAgICAgICAgICAgICAgICAgMC4wMDk1ICAoIDAuMDczMSAgICkgICAtMC4wMjA0ICAgXG4gIDcuICBldmFsIGFsY29ob2wgZWdvIHggYWxjb2hvbCBhbHRlciAgMC4xMzE1ICAoIDAuMDUyNiAgICkgICAtMC4wMjEwICAgXG5cbk92ZXJhbGwgbWF4aW11bSBjb252ZXJnZW5jZSByYXRpbzogICAgMC4yMTUxIFxuXG5cblRvdGFsIG9mIDIxNTQgaXRlcmF0aW9uIHN0ZXBzLlxuIn0= -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                       Estimate   Standard   Convergence 
+                                                    Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1      6.5282  ( 1.1183   )             
+  0.2      Rate parameter period 2      5.1582  ( 0.8725   )             
+
+Other parameters: 
+  1.  eval outdegree (density)         -2.7033  ( 0.1224   )   -0.0175   
+  2.  eval reciprocity                  2.4224  ( 0.2152   )   -0.0841   
+  3.  eval transitive triplets          0.6549  ( 0.1403   )   -0.0138   
+  4.  eval 3-cycles                    -0.0907  ( 0.2735   )   -0.0147   
+  5.  eval alcohol alter               -0.0456  ( 0.0698   )    0.0059   
+  6.  eval alcohol ego                  0.0095  ( 0.0731   )   -0.0204   
+  7.  eval alcohol ego x alcohol alter  0.1315  ( 0.0526   )   -0.0210   
+
+Overall maximum convergence ratio:    0.2151 
+
+
+Total of 2154 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="b" class="section level2">
+<h2><span class="header-section-number">5.2</span> 1b</h2>
+<p>Change the three effects of alcohol to the single effect of alcohol similarity, and estimate again.</p>
+<p>Check the current effect settings</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXllZmZcblxuYGBgIn0= -->
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">myeff</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgZWZmZWN0TmFtZSAgICAgICAgICAgICAgICAgICAgICAgICAgaW5jbHVkZSBmaXggICB0ZXN0ICBpbml0aWFsVmFsdWUgcGFybVxuMSAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMSkgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjY5NjA0ICAgMCAgIFxuMiAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyAgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgIC0xLjQ2NzcwICAgMCAgIFxuNCAgcmVjaXByb2NpdHkgICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNSAgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAgMy1jeWNsZXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNyAgc21va2UxIHNpbWlsYXJpdHkgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOCAgYWxjb2hvbCBhbHRlciAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOSAgYWxjb2hvbCBlZ28gICAgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuMTAgYWxjb2hvbCBlZ28geCBhbGNvaG9sIGFsdGVyICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuIn0= -->
+<pre><code>   effectName                          include fix   test  initialValue parm
+1  constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2  constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3  outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4  reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5  transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6  3-cycles                            TRUE    FALSE FALSE    0.00000   0   
+7  smoke1 similarity                   TRUE    FALSE FALSE    0.00000   0   
+8  alcohol alter                       TRUE    FALSE FALSE    0.00000   0   
+9  alcohol ego                         TRUE    FALSE FALSE    0.00000   0   
+10 alcohol ego x alcohol alter         TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Remove 3 effects of alcohol</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0MiA8LSBzZXRFZmZlY3QoZWZmZWN0MiwgZWdvWGFsdFgsaW50ZXJhY3Rpb24xID0gXCJhbGNvaG9sXCIsaW5jbHVkZSA9IEZBTFNFKVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">effect2 &lt;-<span class="st"> </span><span class="kw">setEffect</span>(effect2, egoXaltX,<span class="dt">interaction1 =</span> <span class="st">&quot;alcohol&quot;</span>,<span class="dt">include =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIGVmZmVjdE5hbWUgICBpbmNsdWRlICAgICAgZml4ICAgICAgICAgIHRlc3QgICAgICAgICBpbml0aWFsVmFsdWVcbls2XSBwYXJtICAgICAgICBcbjwwIHJvd3M+IChvciAwLWxlbmd0aCByb3cubmFtZXMpXG4ifQ== -->
+<pre><code>[1] effectName   include      fix          test         initialValue
+[6] parm        
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Check the effect setting</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0MlxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">effect2</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBlZmZlY3ROYW1lICAgICAgICAgICAgICAgICAgICAgICAgICBpbmNsdWRlIGZpeCAgIHRlc3QgIGluaXRpYWxWYWx1ZSBwYXJtXG4xIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDEpIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgNC42OTYwNCAgIDAgICBcbjIgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyBvdXRkZWdyZWUgKGRlbnNpdHkpICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgLTEuNDY3NzAgICAwICAgXG40IHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjUgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAzLWN5Y2xlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG43IHNtb2tlMSBzaW1pbGFyaXR5ICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbiJ9 -->
+<pre><code>  effectName                          include fix   test  initialValue parm
+1 constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2 constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3 outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4 reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5 transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6 3-cycles                            TRUE    FALSE FALSE    0.00000   0   
+7 smoke1 similarity                   TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Add singel alcohol similarity effect</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0MiA8LSBzZXRFZmZlY3QoZWZmZWN0Miwgc2ltWCwgaW50ZXJhY3Rpb24xID0gXCJhbGNvaG9sXCIsIGluY2x1ZGUgPSBUUlVFKVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">effect2 &lt;-<span class="st"> </span><span class="kw">setEffect</span>(effect2, simX, <span class="dt">interaction1 =</span> <span class="st">&quot;alcohol&quot;</span>, <span class="dt">include =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBlZmZlY3ROYW1lICAgICAgICAgaW5jbHVkZSBmaXggICB0ZXN0ICBpbml0aWFsVmFsdWUgcGFybVxuMSBhbGNvaG9sIHNpbWlsYXJpdHkgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAgICAgICAwICAgMCAgIFxuIn0= -->
+<pre><code>  effectName         include fix   test  initialValue parm
+1 alcohol similarity TRUE    FALSE FALSE          0   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Check the model</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0MlxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">effect2</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBlZmZlY3ROYW1lICAgICAgICAgICAgICAgICAgICAgICAgICBpbmNsdWRlIGZpeCAgIHRlc3QgIGluaXRpYWxWYWx1ZSBwYXJtXG4xIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDEpIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgNC42OTYwNCAgIDAgICBcbjIgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyBvdXRkZWdyZWUgKGRlbnNpdHkpICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgLTEuNDY3NzAgICAwICAgXG40IHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjUgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAzLWN5Y2xlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG43IHNtb2tlMSBzaW1pbGFyaXR5ICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjggYWxjb2hvbCBzaW1pbGFyaXR5ICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuIn0= -->
+<pre><code>  effectName                          include fix   test  initialValue parm
+1 constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2 constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3 outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4 reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5 transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6 3-cycles                            TRUE    FALSE FALSE    0.00000   0   
+7 smoke1 similarity                   TRUE    FALSE FALSE    0.00000   0   
+8 alcohol similarity                  TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Estimate the new model</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zMlxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">ans2</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlICAgU3RhbmRhcmQgICBDb252ZXJnZW5jZSBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFcnJvciAgICAgIHQtcmF0aW8gICBcblxuUmF0ZSBwYXJhbWV0ZXJzOiBcbiAgMC4xICAgICAgUmF0ZSBwYXJhbWV0ZXIgcGVyaW9kIDEgICAgICA2LjU5NDMgICggMS4xMzM4ICAgKSAgICAgICAgICAgICBcbiAgMC4yICAgICAgUmF0ZSBwYXJhbWV0ZXIgcGVyaW9kIDIgICAgICA1LjE4NzEgICggMC44NzAzICAgKSAgICAgICAgICAgICBcblxuT3RoZXIgcGFyYW1ldGVyczogXG4gIDEuICBldmFsIG91dGRlZ3JlZSAoZGVuc2l0eSkgICAgICAgICAtMi43MjIzICAoIDAuMTI0MyAgICkgICAtMC4wMDgyICAgXG4gIDIuICBldmFsIHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgMi40MzAyICAoIDAuMjMwNiAgICkgICAtMC4wMzQ4ICAgXG4gIDMuICBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgMC42NTg5ICAoIDAuMTU0NyAgICkgICAtMC4wMjE2ICAgXG4gIDQuICBldmFsIDMtY3ljbGVzICAgICAgICAgICAgICAgICAgICAtMC4xMTY3ICAoIDAuMzA4MyAgICkgICAtMC4wMjE4ICAgXG4gIDUuICBldmFsIHNtb2tlMSBzaW1pbGFyaXR5ICAgICAgICAgICAgMC4yNzkwICAoIDAuMjExNiAgICkgICAtMC4wMjAwICAgXG4gIDYuICBldmFsIGFsY29ob2wgZWdvICAgICAgICAgICAgICAgICAgMC4wMjQ0ICAoIDAuMDc1MSAgICkgICAgMC4wNDkwICAgXG4gIDcuICBldmFsIGFsY29ob2wgZWdvIHggYWxjb2hvbCBhbHRlciAgMC4xMjQ1ICAoIDAuMDQ5OCAgICkgICAtMC4wMjg1ICAgXG5cbk92ZXJhbGwgbWF4aW11bSBjb252ZXJnZW5jZSByYXRpbzogICAgMC4wOTc4IFxuXG5cblRvdGFsIG9mIDIyNzMgaXRlcmF0aW9uIHN0ZXBzLlxuIn0= -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                       Estimate   Standard   Convergence 
+                                                    Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1      6.5943  ( 1.1338   )             
+  0.2      Rate parameter period 2      5.1871  ( 0.8703   )             
+
+Other parameters: 
+  1.  eval outdegree (density)         -2.7223  ( 0.1243   )   -0.0082   
+  2.  eval reciprocity                  2.4302  ( 0.2306   )   -0.0348   
+  3.  eval transitive triplets          0.6589  ( 0.1547   )   -0.0216   
+  4.  eval 3-cycles                    -0.1167  ( 0.3083   )   -0.0218   
+  5.  eval smoke1 similarity            0.2790  ( 0.2116   )   -0.0200   
+  6.  eval alcohol ego                  0.0244  ( 0.0751   )    0.0490   
+  7.  eval alcohol ego x alcohol alter  0.1245  ( 0.0498   )   -0.0285   
+
+Overall maximum convergence ratio:    0.0978 
+
+
+Total of 2273 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="q2" class="section level1">
+<h1><span class="header-section-number">6</span> Q2</h1>
+<div id="prepare-new-data" class="section level2">
+<h2><span class="header-section-number">6.1</span> Prepare new data</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb29rIGF0IHJlc3VsdHNcbk5CYW5zXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># Look at results</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">NBans</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICBTdGFuZGFyZCAgIENvbnZlcmdlbmNlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXJyb3IgICAgICB0LXJhdGlvICAgXG5OZXR3b3JrIER5bmFtaWNzIFxuICAgMS4gcmF0ZSBjb25zdGFudCBmcmllbmRzaGlwIHJhdGUgKHBlcmlvZCAxKSAgNi4zODYyICAoIDEuMDMzNCAgICkgICAgMC4wODY1ICAgXG4gICAyLiByYXRlIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDIpICA0Ljk5MTkgICggMC45NjkyICAgKSAgIC0wLjA1NTEgICBcbiAgIDMuIGV2YWwgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgLTIuODY3NiAgKCAwLjE1NjEgICApICAgIDAuMDIzNCAgIFxuICAgNC4gZXZhbCByZWNpcHJvY2l0eSAgICAgICAgICAgICAgICAgICAgICAgICAgMi43MzYwICAoIDAuMjU1MSAgICkgICAgMC4wMDcxICAgXG4gICA1LiBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgICAgICAgICAwLjg5NDQgICggMC4xNDI1ICAgKSAgICAwLjA2MDIgICBcbiAgIDYuIGV2YWwgdHJhbnNpdGl2ZSByZWNpcHIuIHRyaXBsZXRzICAgICAgICAgLTAuNTQzNyAgKCAwLjIyMDUgICApICAgIDAuMDUyMiAgIFxuICAgNy4gZXZhbCBzbW9rZTEgc2ltaWxhcml0eSAgICAgICAgICAgICAgICAgICAgMC4yMjc1ICAoIDAuMjI0MCAgICkgICAtMC4wMTU1ICAgXG4gICA4LiBldmFsIGRyaW5raW5nIGFsdGVyICAgICAgICAgICAgICAgICAgICAgIC0wLjAzNTYgICggMC4wOTExICAgKSAgICAwLjAwODEgICBcbiAgIDkuIGV2YWwgZHJpbmtpbmcgZWdvICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDQxNyAgKCAwLjEwNjQgICApICAgIDAuMDA0MSAgIFxuICAxMC4gZXZhbCBkcmlua2luZyBlZ28geCBkcmlua2luZyBhbHRlciAgICAgICAgMC4xNzUxICAoIDAuMDczNSAgICkgICAtMC4wNTk4ICAgXG5cbkJlaGF2aW9yIER5bmFtaWNzXG4gIDExLiByYXRlIHJhdGUgZHJpbmtpbmcgKHBlcmlvZCAxKSAgICAgICAgICAgICAxLjMwOTkgICggMC4zMjk4ICAgKSAgIC0wLjA0OTQgICBcbiAgMTIuIHJhdGUgcmF0ZSBkcmlua2luZyAocGVyaW9kIDIpICAgICAgICAgICAgIDEuNzcwMyAgKCAwLjQ5NjEgICApICAgLTAuMDYzOSAgIFxuICAxMy4gZXZhbCBkcmlua2luZyBsaW5lYXIgc2hhcGUgICAgICAgICAgICAgICAgMC40MjA3ICAoIDAuMjE3MCAgICkgICAtMC4wMDE3ICAgXG4gIDE0LiBldmFsIGRyaW5raW5nIHF1YWRyYXRpYyBzaGFwZSAgICAgICAgICAgIC0wLjU3MTEgICggMC4zMDA3ICAgKSAgICAwLjA0MTMgICBcbiAgMTUuIGV2YWwgZHJpbmtpbmcgYXZlcmFnZSBhbHRlciAgICAgICAgICAgICAgIDEuMjIxOSAgKCAwLjcyOTAgICApICAgLTAuMDA3OSAgIFxuXG5PdmVyYWxsIG1heGltdW0gY29udmVyZ2VuY2UgcmF0aW86ICAgIDAuMjA1NiBcblxuXG5Ub3RhbCBvZiAzMjY2IGl0ZXJhdGlvbiBzdGVwcy5cbiJ9 -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                               Estimate   Standard   Convergence 
+                                                            Error      t-ratio   
+Network Dynamics 
+   1. rate constant friendship rate (period 1)  6.3862  ( 1.0334   )    0.0865   
+   2. rate constant friendship rate (period 2)  4.9919  ( 0.9692   )   -0.0551   
+   3. eval outdegree (density)                 -2.8676  ( 0.1561   )    0.0234   
+   4. eval reciprocity                          2.7360  ( 0.2551   )    0.0071   
+   5. eval transitive triplets                  0.8944  ( 0.1425   )    0.0602   
+   6. eval transitive recipr. triplets         -0.5437  ( 0.2205   )    0.0522   
+   7. eval smoke1 similarity                    0.2275  ( 0.2240   )   -0.0155   
+   8. eval drinking alter                      -0.0356  ( 0.0911   )    0.0081   
+   9. eval drinking ego                         0.0417  ( 0.1064   )    0.0041   
+  10. eval drinking ego x drinking alter        0.1751  ( 0.0735   )   -0.0598   
+
+Behavior Dynamics
+  11. rate rate drinking (period 1)             1.3099  ( 0.3298   )   -0.0494   
+  12. rate rate drinking (period 2)             1.7703  ( 0.4961   )   -0.0639   
+  13. eval drinking linear shape                0.4207  ( 0.2170   )   -0.0017   
+  14. eval drinking quadratic shape            -0.5711  ( 0.3007   )    0.0413   
+  15. eval drinking average alter               1.2219  ( 0.7290   )   -0.0079   
+
+Overall maximum convergence ratio:    0.2056 
+
+
+Total of 3266 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="a-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> 2a</h2>
+<p>Replace the average alter effect by average similarity (avSim) or total similarity (totSim) and estimate the model again.</p>
+<p>Check the currenct effect setting</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkJlZmZcblxuYGBgIn0= -->
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">NBeff</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgbmFtZSAgICAgICBlZmZlY3ROYW1lICAgICAgICAgICAgICAgICAgICAgICAgICBpbmNsdWRlIGZpeCAgIHRlc3QgIGluaXRpYWxWYWx1ZSBwYXJtXG4xICBmcmllbmRzaGlwIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDEpIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgNC42OTYwNCAgIDAgICBcbjIgIGZyaWVuZHNoaXAgY29uc3RhbnQgZnJpZW5kc2hpcCByYXRlIChwZXJpb2QgMikgVFJVRSAgICBGQUxTRSBGQUxTRSAgICA0LjMyODg1ICAgMCAgIFxuMyAgZnJpZW5kc2hpcCBvdXRkZWdyZWUgKGRlbnNpdHkpICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgLTEuNDY3NzAgICAwICAgXG40ICBmcmllbmRzaGlwIHJlY2lwcm9jaXR5ICAgICAgICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjUgIGZyaWVuZHNoaXAgdHJhbnNpdGl2ZSB0cmlwbGV0cyAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuNiAgZnJpZW5kc2hpcCB0cmFuc2l0aXZlIHJlY2lwci4gdHJpcGxldHMgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG43ICBmcmllbmRzaGlwIHNtb2tlMSBzaW1pbGFyaXR5ICAgICAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjggIGZyaWVuZHNoaXAgZHJpbmtpbmcgYWx0ZXIgICAgICAgICAgICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuOSAgZnJpZW5kc2hpcCBkcmlua2luZyBlZ28gICAgICAgICAgICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG4xMCBmcmllbmRzaGlwIGRyaW5raW5nIGVnbyB4IGRyaW5raW5nIGFsdGVyICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4wMDAwMCAgIDAgICBcbjExIGRyaW5raW5nICAgcmF0ZSBkcmlua2luZyAocGVyaW9kIDEpICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjcwNTcxICAgMCAgIFxuMTIgZHJpbmtpbmcgICByYXRlIGRyaW5raW5nIChwZXJpb2QgMikgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuODQ5MzkgICAwICAgXG4xMyBkcmlua2luZyAgIGRyaW5raW5nIGxpbmVhciBzaGFwZSAgICAgICAgICAgICAgIFRSVUUgICAgRkFMU0UgRkFMU0UgICAgMC4zMjIzNyAgIDAgICBcbjE0IGRyaW5raW5nICAgZHJpbmtpbmcgcXVhZHJhdGljIHNoYXBlICAgICAgICAgICAgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAwLjAwMDAwICAgMCAgIFxuMTUgZHJpbmtpbmcgICBkcmlua2luZyBhdmVyYWdlIGFsdGVyICAgICAgICAgICAgICBUUlVFICAgIEZBTFNFIEZBTFNFICAgIDAuMDAwMDAgICAwICAgXG4ifQ== -->
+<pre><code>   name       effectName                          include fix   test  initialValue parm
+1  friendship constant friendship rate (period 1) TRUE    FALSE FALSE    4.69604   0   
+2  friendship constant friendship rate (period 2) TRUE    FALSE FALSE    4.32885   0   
+3  friendship outdegree (density)                 TRUE    FALSE FALSE   -1.46770   0   
+4  friendship reciprocity                         TRUE    FALSE FALSE    0.00000   0   
+5  friendship transitive triplets                 TRUE    FALSE FALSE    0.00000   0   
+6  friendship transitive recipr. triplets         TRUE    FALSE FALSE    0.00000   0   
+7  friendship smoke1 similarity                   TRUE    FALSE FALSE    0.00000   0   
+8  friendship drinking alter                      TRUE    FALSE FALSE    0.00000   0   
+9  friendship drinking ego                        TRUE    FALSE FALSE    0.00000   0   
+10 friendship drinking ego x drinking alter       TRUE    FALSE FALSE    0.00000   0   
+11 drinking   rate drinking (period 1)            TRUE    FALSE FALSE    0.70571   0   
+12 drinking   rate drinking (period 2)            TRUE    FALSE FALSE    0.84939   0   
+13 drinking   drinking linear shape               TRUE    FALSE FALSE    0.32237   0   
+14 drinking   drinking quadratic shape            TRUE    FALSE FALSE    0.00000   0   
+15 drinking   drinking average alter              TRUE    FALSE FALSE    0.00000   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Change the effect setting</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkJlZmYxIDwtIGluY2x1ZGVFZmZlY3RzKE5CZWZmMSwgYXZTaW0sXG4gIG5hbWUgPSBcImRyaW5raW5nXCIsXG4gIGludGVyYWN0aW9uMSA9IFwiZnJpZW5kc2hpcFwiLCBpbmNsdWRlID0gVFJVRVxuKVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">NBeff1 &lt;-<span class="st"> </span><span class="kw">includeEffects</span>(NBeff1, avSim,</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">  <span class="dt">name =</span> <span class="st">&quot;drinking&quot;</span>,</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3">  <span class="dt">interaction1 =</span> <span class="st">&quot;friendship&quot;</span>, <span class="dt">include =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4">)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBlZmZlY3ROYW1lICAgICAgICAgICAgICAgICAgaW5jbHVkZSBmaXggICB0ZXN0ICBpbml0aWFsVmFsdWUgcGFybVxuMSBkcmlua2luZyBhdmVyYWdlIHNpbWlsYXJpdHkgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAgICAgICAwICAgMCAgIFxuIn0= -->
+<pre><code>  effectName                  include fix   test  initialValue parm
+1 drinking average similarity TRUE    FALSE FALSE          0   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Estimate the new model</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkJhbnMxXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">NBans1</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICBTdGFuZGFyZCAgIENvbnZlcmdlbmNlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXJyb3IgICAgICB0LXJhdGlvICAgXG5OZXR3b3JrIER5bmFtaWNzIFxuICAgMS4gcmF0ZSBjb25zdGFudCBmcmllbmRzaGlwIHJhdGUgKHBlcmlvZCAxKSAgNi4zNzc2ICAoIDEuMDMzMyAgICkgICAgMC4wMzIwICAgXG4gICAyLiByYXRlIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDIpICA1LjAzMjcgICggMC44NjE1ICAgKSAgIC0wLjAwMDMgICBcbiAgIDMuIGV2YWwgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgLTIuODc3NCAgKCAwLjE3MzcgICApICAgLTAuMDA4MCAgIFxuICAgNC4gZXZhbCByZWNpcHJvY2l0eSAgICAgICAgICAgICAgICAgICAgICAgICAgMi43NjUxICAoIDAuMjg5OCAgICkgICAtMC4wMDI0ICAgXG4gICA1LiBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgICAgICAgICAwLjkwOTggICggMC4xNTE0ICAgKSAgICAwLjAzMzcgICBcbiAgIDYuIGV2YWwgdHJhbnNpdGl2ZSByZWNpcHIuIHRyaXBsZXRzICAgICAgICAgLTAuNTY2OCAgKCAwLjIzNTIgICApICAgIDAuMDE2OSAgIFxuICAgNy4gZXZhbCBzbW9rZTEgc2ltaWxhcml0eSAgICAgICAgICAgICAgICAgICAgMC4yMzIxICAoIDAuMTk5OSAgICkgICAgMC4wMTMzICAgXG4gICA4LiBldmFsIGRyaW5raW5nIGFsdGVyICAgICAgICAgICAgICAgICAgICAgIC0wLjAzNDQgICggMC4wOTE3ICAgKSAgICAwLjAxMzEgICBcbiAgIDkuIGV2YWwgZHJpbmtpbmcgZWdvICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDQyMCAgKCAwLjEwMjUgICApICAgLTAuMDAxMCAgIFxuICAxMC4gZXZhbCBkcmlua2luZyBlZ28geCBkcmlua2luZyBhbHRlciAgICAgICAgMC4xNzQwICAoIDAuMDc3NiAgICkgICAtMC4wMTc1ICAgXG5cbkJlaGF2aW9yIER5bmFtaWNzXG4gIDExLiByYXRlIHJhdGUgZHJpbmtpbmcgKHBlcmlvZCAxKSAgICAgICAgICAgICAxLjMxNTggICggMC4zMzk2ICAgKSAgIC0wLjA0MjIgICBcbiAgMTIuIHJhdGUgcmF0ZSBkcmlua2luZyAocGVyaW9kIDIpICAgICAgICAgICAgIDEuNzg5NSAgKCAwLjQ3NzIgICApICAgLTAuMDc0NSAgIFxuICAxMy4gZXZhbCBkcmlua2luZyBsaW5lYXIgc2hhcGUgICAgICAgICAgICAgICAgMC4zNjkzICAoIDAuMTY5MiAgICkgICAtMC4wODQxICAgXG4gIDE0LiBldmFsIGRyaW5raW5nIHF1YWRyYXRpYyBzaGFwZSAgICAgICAgICAgIC0wLjA4NzUgICggMC4xMTE0ICAgKSAgIC0wLjAxMjIgICBcbiAgMTUuIGV2YWwgZHJpbmtpbmcgYXZlcmFnZSBzaW1pbGFyaXR5ICAgICAgICAgIDMuNzcyMiAgKCAyLjAwNzcgICApICAgLTAuMDA2NiAgIFxuXG5PdmVyYWxsIG1heGltdW0gY29udmVyZ2VuY2UgcmF0aW86ICAgIDAuMTg4MCBcblxuXG5Ub3RhbCBvZiAzNTYwIGl0ZXJhdGlvbiBzdGVwcy5cbiJ9 -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                               Estimate   Standard   Convergence 
+                                                            Error      t-ratio   
+Network Dynamics 
+   1. rate constant friendship rate (period 1)  6.3776  ( 1.0333   )    0.0320   
+   2. rate constant friendship rate (period 2)  5.0327  ( 0.8615   )   -0.0003   
+   3. eval outdegree (density)                 -2.8774  ( 0.1737   )   -0.0080   
+   4. eval reciprocity                          2.7651  ( 0.2898   )   -0.0024   
+   5. eval transitive triplets                  0.9098  ( 0.1514   )    0.0337   
+   6. eval transitive recipr. triplets         -0.5668  ( 0.2352   )    0.0169   
+   7. eval smoke1 similarity                    0.2321  ( 0.1999   )    0.0133   
+   8. eval drinking alter                      -0.0344  ( 0.0917   )    0.0131   
+   9. eval drinking ego                         0.0420  ( 0.1025   )   -0.0010   
+  10. eval drinking ego x drinking alter        0.1740  ( 0.0776   )   -0.0175   
+
+Behavior Dynamics
+  11. rate rate drinking (period 1)             1.3158  ( 0.3396   )   -0.0422   
+  12. rate rate drinking (period 2)             1.7895  ( 0.4772   )   -0.0745   
+  13. eval drinking linear shape                0.3693  ( 0.1692   )   -0.0841   
+  14. eval drinking quadratic shape            -0.0875  ( 0.1114   )   -0.0122   
+  15. eval drinking average similarity          3.7722  ( 2.0077   )   -0.0066   
+
+Overall maximum convergence ratio:    0.1880 
+
+
+Total of 3560 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="b-1" class="section level2">
+<h2><span class="header-section-number">6.3</span> 2b</h2>
+<p>Add the effect of smoking on drinking and estimate again.</p>
+<p>Check the available effects</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZWZmZWN0c0RvY3VtZW50YXRpb24oTkJlZmYxKVxuXG5gYGAifQ== -->
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">effectsDocumentation</span>(NBeff1)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBtZXNzYWdlOlxuSW4gZnVuKGxpYm5hbWUsIHBrZ25hbWUpIDogY291bGRuJ3QgY29ubmVjdCB0byBkaXNwbGF5IFwiOjBcIlxuIn0= -->
+<pre><code>Warning message:
+In fun(libname, pkgname) : couldn't connect to display &quot;:0&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Include <strong>effect smoke1 on rate drinking</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkJlZmYyIDwtIHNldEVmZmVjdChOQmVmZjEsIFJhdGVYLCBuYW1lID0gXCJkcmlua2luZ1wiLCBpbnRlcmFjdGlvbjEgPSBcInNtb2tlMVwiLCB0eXBlID0gXCJyYXRlXCIpXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">NBeff2 &lt;-<span class="st"> </span><span class="kw">setEffect</span>(NBeff1, RateX, <span class="dt">name =</span> <span class="st">&quot;drinking&quot;</span>, <span class="dt">interaction1 =</span> <span class="st">&quot;smoke1&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;rate&quot;</span>)</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBlZmZlY3ROYW1lICAgICAgICAgICAgICAgICAgICAgaW5jbHVkZSBmaXggICB0ZXN0ICBpbml0aWFsVmFsdWUgcGFybVxuMSBlZmZlY3Qgc21va2UxIG9uIHJhdGUgZHJpbmtpbmcgVFJVRSAgICBGQUxTRSBGQUxTRSAgICAgICAgICAwICAgMCAgIFxuIn0= -->
+<pre><code>  effectName                     include fix   test  initialValue parm
+1 effect smoke1 on rate drinking TRUE    FALSE FALSE          0   0   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Estimate the new model</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkJhbnMyXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">NBans2</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICBTdGFuZGFyZCAgIENvbnZlcmdlbmNlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXJyb3IgICAgICB0LXJhdGlvICAgXG5OZXR3b3JrIER5bmFtaWNzIFxuICAgMS4gcmF0ZSBjb25zdGFudCBmcmllbmRzaGlwIHJhdGUgKHBlcmlvZCAxKSAgNi4zNjUyICAoIDEuMDMxMiAgICkgICAgMC4wNzA1ICAgXG4gICAyLiByYXRlIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDIpICA1LjA5NDcgICggMC43ODA3ICAgKSAgICAwLjEyNTcgICBcbiAgIDMuIGV2YWwgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgLTIuODY4MyAgKCAwLjE2MjUgICApICAgIDAuMTE1MyAgIFxuICAgNC4gZXZhbCByZWNpcHJvY2l0eSAgICAgICAgICAgICAgICAgICAgICAgICAgMi43NDIzICAoIDAuMjczNSAgICkgICAgMC4xMzg0ICAgXG4gICA1LiBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgICAgICAgICAwLjg5MjEgICggMC4xNTI0ICAgKSAgICAwLjE4OTggICBcbiAgIDYuIGV2YWwgdHJhbnNpdGl2ZSByZWNpcHIuIHRyaXBsZXRzICAgICAgICAgLTAuNTI2OCAgKCAwLjIzNzEgICApICAgIDAuMjA0NiAgIFxuICAgNy4gZXZhbCBzbW9rZTEgc2ltaWxhcml0eSAgICAgICAgICAgICAgICAgICAgMC4yMzQwICAoIDAuMjA2NSAgICkgICAgMC4xMjE4ICAgXG4gICA4LiBldmFsIGRyaW5raW5nIGFsdGVyICAgICAgICAgICAgICAgICAgICAgIC0wLjA0MDMgICggMC4xMDAyICAgKSAgIC0wLjEwODEgICBcbiAgIDkuIGV2YWwgZHJpbmtpbmcgZWdvICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDM4NSAgKCAwLjEwNjMgICApICAgLTAuMDkwOCAgIFxuICAxMC4gZXZhbCBkcmlua2luZyBlZ28geCBkcmlua2luZyBhbHRlciAgICAgICAgMC4xNzgxICAoIDAuMDc2NiAgICkgICAgMC4wOTkxICAgXG5cbkJlaGF2aW9yIER5bmFtaWNzXG4gIDExLiByYXRlIHJhdGUgZHJpbmtpbmcgKHBlcmlvZCAxKSAgICAgICAgICAgICAxLjMxNDYgICggMC4zMDk0ICAgKSAgIC0wLjA0MDcgICBcbiAgMTIuIHJhdGUgcmF0ZSBkcmlua2luZyAocGVyaW9kIDIpICAgICAgICAgICAgIDEuODA3OCAgKCAwLjQ0MDkgICApICAgLTAuMDA4MCAgIFxuICAxMy4gcmF0ZSBlZmZlY3Qgc21va2UxIG9uIHJhdGUgZHJpbmtpbmcgICAgICAtMC4wMTE2ICAoIDAuMjc5MiAgICkgICAtMC4wNTU3ICAgXG4gIDE0LiBldmFsIGRyaW5raW5nIGxpbmVhciBzaGFwZSAgICAgICAgICAgICAgICAwLjM3MDcgICggMC4xNzMzICAgKSAgIC0wLjAxNDkgICBcbiAgMTUuIGV2YWwgZHJpbmtpbmcgcXVhZHJhdGljIHNoYXBlICAgICAgICAgICAgLTAuMDg3MSAgKCAwLjA5NTkgICApICAgLTAuMDIwNSAgIFxuICAxNi4gZXZhbCBkcmlua2luZyBhdmVyYWdlIHNpbWlsYXJpdHkgICAgICAgICAgMy43NzU5ICAoIDIuMzAyOSAgICkgICAtMC4wMzQ5ICAgXG5cbk92ZXJhbGwgbWF4aW11bSBjb252ZXJnZW5jZSByYXRpbzogICAgMC4yODkxIFxuXG5cblRvdGFsIG9mIDMzMjIgaXRlcmF0aW9uIHN0ZXBzLlxuIn0= -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                               Estimate   Standard   Convergence 
+                                                            Error      t-ratio   
+Network Dynamics 
+   1. rate constant friendship rate (period 1)  6.3652  ( 1.0312   )    0.0705   
+   2. rate constant friendship rate (period 2)  5.0947  ( 0.7807   )    0.1257   
+   3. eval outdegree (density)                 -2.8683  ( 0.1625   )    0.1153   
+   4. eval reciprocity                          2.7423  ( 0.2735   )    0.1384   
+   5. eval transitive triplets                  0.8921  ( 0.1524   )    0.1898   
+   6. eval transitive recipr. triplets         -0.5268  ( 0.2371   )    0.2046   
+   7. eval smoke1 similarity                    0.2340  ( 0.2065   )    0.1218   
+   8. eval drinking alter                      -0.0403  ( 0.1002   )   -0.1081   
+   9. eval drinking ego                         0.0385  ( 0.1063   )   -0.0908   
+  10. eval drinking ego x drinking alter        0.1781  ( 0.0766   )    0.0991   
+
+Behavior Dynamics
+  11. rate rate drinking (period 1)             1.3146  ( 0.3094   )   -0.0407   
+  12. rate rate drinking (period 2)             1.8078  ( 0.4409   )   -0.0080   
+  13. rate effect smoke1 on rate drinking      -0.0116  ( 0.2792   )   -0.0557   
+  14. eval drinking linear shape                0.3707  ( 0.1733   )   -0.0149   
+  15. eval drinking quadratic shape            -0.0871  ( 0.0959   )   -0.0205   
+  16. eval drinking average similarity          3.7759  ( 2.3029   )   -0.0349   
+
+Overall maximum convergence ratio:    0.2891 
+
+
+Total of 3322 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>OPTIONAL: If estimation results should show insufficient convergence (i.e., the convergence t-ratios are not all between -0.1 and +0.1 for the estimated(!) parameters, and the overall maximum convergence ratio is below .25), another run with better starting values may help. The option ‘prevAns’ makes it possible to use the last available estimates as starting values for a new run:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkJhbnMyXG5cbmBgYCJ9 -->
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">NBans2</a></code></pre></div>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXN0aW1hdGVzLCBzdGFuZGFyZCBlcnJvcnMgYW5kIGNvbnZlcmdlbmNlIHQtcmF0aW9zXG5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgICBTdGFuZGFyZCAgIENvbnZlcmdlbmNlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRXJyb3IgICAgICB0LXJhdGlvICAgXG5OZXR3b3JrIER5bmFtaWNzIFxuICAgMS4gcmF0ZSBjb25zdGFudCBmcmllbmRzaGlwIHJhdGUgKHBlcmlvZCAxKSAgNi4zNDkxICAoIDAuOTk5MiAgICkgICAtMC4wNDA4ICAgXG4gICAyLiByYXRlIGNvbnN0YW50IGZyaWVuZHNoaXAgcmF0ZSAocGVyaW9kIDIpICA1LjA3OTAgICggMC44MDc2ICAgKSAgIC0wLjAzNDEgICBcbiAgIDMuIGV2YWwgb3V0ZGVncmVlIChkZW5zaXR5KSAgICAgICAgICAgICAgICAgLTIuODU3MyAgKCAwLjE1NDUgICApICAgLTAuMDM3NSAgIFxuICAgNC4gZXZhbCByZWNpcHJvY2l0eSAgICAgICAgICAgICAgICAgICAgICAgICAgMi43MzE0ICAoIDAuMjY5OSAgICkgICAtMC4wMjg5ICAgXG4gICA1LiBldmFsIHRyYW5zaXRpdmUgdHJpcGxldHMgICAgICAgICAgICAgICAgICAwLjg4MjMgICggMC4xMzk5ICAgKSAgIC0wLjA0MjAgICBcbiAgIDYuIGV2YWwgdHJhbnNpdGl2ZSByZWNpcHIuIHRyaXBsZXRzICAgICAgICAgLTAuNTIyOCAgKCAwLjIyMTkgICApICAgLTAuMDE5MSAgIFxuICAgNy4gZXZhbCBzbW9rZTEgc2ltaWxhcml0eSAgICAgICAgICAgICAgICAgICAgMC4yMjU3ICAoIDAuMjA5NiAgICkgICAgMC4wMDg5ICAgXG4gICA4LiBldmFsIGRyaW5raW5nIGFsdGVyICAgICAgICAgICAgICAgICAgICAgIC0wLjA0MjAgICggMC4wOTQyICAgKSAgIC0wLjA2MjcgICBcbiAgIDkuIGV2YWwgZHJpbmtpbmcgZWdvICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDQ2NSAgKCAwLjA5NzEgICApICAgLTAuMDQ5MyAgIFxuICAxMC4gZXZhbCBkcmlua2luZyBlZ28geCBkcmlua2luZyBhbHRlciAgICAgICAgMC4xNzY4ICAoIDAuMDc5NCAgICkgICAgMC4wMzExICAgXG5cbkJlaGF2aW9yIER5bmFtaWNzXG4gIDExLiByYXRlIHJhdGUgZHJpbmtpbmcgKHBlcmlvZCAxKSAgICAgICAgICAgICAxLjMyNDcgICggMC4zMzkyICAgKSAgICAwLjAwMjUgICBcbiAgMTIuIHJhdGUgcmF0ZSBkcmlua2luZyAocGVyaW9kIDIpICAgICAgICAgICAgIDEuODIxNyAgKCAwLjUyOTggICApICAgIDAuMDI2MCAgIFxuICAxMy4gcmF0ZSBlZmZlY3Qgc21va2UxIG9uIHJhdGUgZHJpbmtpbmcgICAgICAgMC4wMDE0ICAoIDAuMzE3NyAgICkgICAgMC4wMTY4ICAgXG4gIDE0LiBldmFsIGRyaW5raW5nIGxpbmVhciBzaGFwZSAgICAgICAgICAgICAgICAwLjM2NjggICggMC4xNzY1ICAgKSAgIC0wLjAxNjEgICBcbiAgMTUuIGV2YWwgZHJpbmtpbmcgcXVhZHJhdGljIHNoYXBlICAgICAgICAgICAgLTAuMDg2MyAgKCAwLjA5OTMgICApICAgLTAuMDEyMiAgIFxuICAxNi4gZXZhbCBkcmlua2luZyBhdmVyYWdlIHNpbWlsYXJpdHkgICAgICAgICAgMy43Njg0ICAoIDEuOTA5NSAgICkgICAgMC4wMjAxICAgXG5cbk92ZXJhbGwgbWF4aW11bSBjb252ZXJnZW5jZSByYXRpbzogICAgMC4xNzM1IFxuXG5cblRvdGFsIG9mIDMxMDggaXRlcmF0aW9uIHN0ZXBzLlxuIn0= -->
+<pre><code>Estimates, standard errors and convergence t-ratios
+
+                                               Estimate   Standard   Convergence 
+                                                            Error      t-ratio   
+Network Dynamics 
+   1. rate constant friendship rate (period 1)  6.3491  ( 0.9992   )   -0.0408   
+   2. rate constant friendship rate (period 2)  5.0790  ( 0.8076   )   -0.0341   
+   3. eval outdegree (density)                 -2.8573  ( 0.1545   )   -0.0375   
+   4. eval reciprocity                          2.7314  ( 0.2699   )   -0.0289   
+   5. eval transitive triplets                  0.8823  ( 0.1399   )   -0.0420   
+   6. eval transitive recipr. triplets         -0.5228  ( 0.2219   )   -0.0191   
+   7. eval smoke1 similarity                    0.2257  ( 0.2096   )    0.0089   
+   8. eval drinking alter                      -0.0420  ( 0.0942   )   -0.0627   
+   9. eval drinking ego                         0.0465  ( 0.0971   )   -0.0493   
+  10. eval drinking ego x drinking alter        0.1768  ( 0.0794   )    0.0311   
+
+Behavior Dynamics
+  11. rate rate drinking (period 1)             1.3247  ( 0.3392   )    0.0025   
+  12. rate rate drinking (period 2)             1.8217  ( 0.5298   )    0.0260   
+  13. rate effect smoke1 on rate drinking       0.0014  ( 0.3177   )    0.0168   
+  14. eval drinking linear shape                0.3668  ( 0.1765   )   -0.0161   
+  15. eval drinking quadratic shape            -0.0863  ( 0.0993   )   -0.0122   
+  16. eval drinking average similarity          3.7684  ( 1.9095   )    0.0201   
+
+Overall maximum convergence ratio:    0.1735 
+
+
+Total of 3108 iteration steps.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
 </div>
 <div id="references" class="section level1">
-<h1><span class="header-section-number">4</span> References</h1>
-<p><a href="https://www.rdocumentation.org/packages/ergm/versions/3.9.4/topics/ergm-terms">ergm-terms</a></p>
-<p><a href="https://rpubs.com/johnsonam007/lab3ERGM">Exponential Random Graph Modeling</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Star_(graph_theory)">Star (graph theory)</a></p>
+<h1><span class="header-section-number">7</span> References</h1>
+<p><a href="http://www.stats.ox.ac.uk/~snijders/siena/RSiena_Manual.pdf">RSiena Manual</a></p>
+<p><a href="http://steglich.gmw.rug.nl/workshops/network-dynamicsMarkdown.html#(5)_model_estimation">RSiena Workshop - Network Evolution</a></p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSFc1IgphdXRob3I6ICJMb3dzb24gTGksIFIwODMyMzAyMyIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGhpZ2hsaWdodDogdGFuZ28KICAgIG51bWJlcl9zZWN0aW9uczogeWVzCiAgICB0aGVtZTogc2ltcGxleAogICAgdG9jOiB5ZXMKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiB5ZXMKICAgICAgc21vb3RoX3Njcm9sbDogeWVzCiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogICAgdG9jOiB5ZXMKICBwZGZfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwplZGl0b3Jfb3B0aW9uczoKICBjaHVua19vdXRwdXRfdHlwZTogaW5saW5lCi0tLQoKYGBge3IgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBtZXNzYWdlID0gRkFMU0UpCmBgYAoKIyBMb2FkIHBhY2thZ2VzCmBgYHtyfQpsaWJyYXJ5KHRpZHl2ZXJzZSkKbGlicmFyeShrbml0cikKbGlicmFyeShzdGF0bmV0KQpsaWJyYXJ5KGVyZ20pCmBgYAoKIyBJbXBvcnQgZGF0YSAKYGBge3J9CgpgYGAKCiMgUTEKCgojIFJlZmVyZW5jZXMKCltlcmdtLXRlcm1zXShodHRwczovL3d3dy5yZG9jdW1lbnRhdGlvbi5vcmcvcGFja2FnZXMvZXJnbS92ZXJzaW9ucy8zLjkuNC90b3BpY3MvZXJnbS10ZXJtcykKCltFeHBvbmVudGlhbCBSYW5kb20gR3JhcGggTW9kZWxpbmddKGh0dHBzOi8vcnB1YnMuY29tL2pvaG5zb25hbTAwNy9sYWIzRVJHTSkKCltTdGFyIChncmFwaCB0aGVvcnkpXShodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9TdGFyXyhncmFwaF90aGVvcnkpKQ==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSFc1IgphdXRob3I6ICJMb3dzb24gTGksIFIwODMyMzAyMyIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGhpZ2hsaWdodDogdGFuZ28KICAgIG51bWJlcl9zZWN0aW9uczogeWVzCiAgICB0aGVtZTogc2ltcGxleAogICAgdG9jOiB5ZXMKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiB5ZXMKICAgICAgc21vb3RoX3Njcm9sbDogeWVzCiAgaHRtbF9kb2N1bWVudDoKICAgIGRmX3ByaW50OiBwYWdlZAogICAgdG9jOiB5ZXMKICBwZGZfZG9jdW1lbnQ6CiAgICB0b2M6IHllcwplZGl0b3Jfb3B0aW9uczoKICBjaHVua19vdXRwdXRfdHlwZTogaW5saW5lCi0tLQoKYGBge3IgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBtZXNzYWdlID0gRkFMU0UpCmBgYAoKIyBMb2FkIHBhY2thZ2VzCmBgYHtyIGVjaG89VFJVRX0KbGlicmFyeSh0aWR5dmVyc2UpCmxpYnJhcnkoUlNpZW5hKQpgYGAKCiMgSW1wb3J0IGRhdGEgCmBgYHtyfQo/czUwCmBgYAoKIyMgRGVzY3JpcHRpb24gCgpBbiBleGNlcnB0IG9mIHRoZSBuZXR3b3JrLCBhbGNvaG9sIGNvbnN1bXB0aW9uLCBhbmQgc21va2luZyBkYXRhIGZvciA1MCByYW5kb21seSBjaG9zZW4gZ2lybHMgZnJvbSB0aGUgVGVlbmFnZSBGcmllbmRzIGFuZCBMaWZlc3R5bGUgU3R1ZHkgZGF0YSBzZXQuIFVzZWZ1bCBhcyBhIHNtYWxsIGV4YW1wbGUgb2YgbmV0d29yayBhbmQgYmVoYXZpb3VyLCBmb3Igd2hpY2ggbW9kZWxzIGNhbiBiZSBmaXR0ZWQgcXVpY2tseSwgYW5kIGZvciB3aGljaCB0aGVyZSBhcmUgbm8gbWlzc2luZyB2YWx1ZXMuCgojIyBGb3JtYXQgCgoqKkFkamFjZW5jeSBtYXRyaXgqKiBmb3IgdGhlIG5ldHdvcmsgYXQgKip0aW1lIHBvaW50cyAxLCAyLCAzKio7IDUwIGJ5IDMgbWF0cmljZXMgb2YgYWxjb2hvbCBjb25zdW1wdGlvbiBhbmQgc21va2luZyBkYXRhIGZvciB0aGUgdGhyZWUgdGltZSBwb2ludHMuCgoKIyMgR2xpbXBzZSBvZiBkYXRhIAoKRGF0YSBjbGFzcwpgYGB7cn0KczUwMSAlPiUgY2xhc3MKYGBgCgpGaXJzdCB3YXZlIGRhdGEKYGBge3J9CmdsaW1wc2UoczUwMSkKYGBgCgpBbGNvaG9sIHZhcmlhYmxlcyAKYGBge3J9CmdsaW1wc2UoczUwYSkKYGBgCgojIyBQcmVwYXJlIGRhdGEgCmBgYHtyIGVjaG89VFJVRX0KIyBOb3cgZGVmaW5lIHRoZSBvYmplY3RzIHdpdGggdGhlIHNhbWUgbmFtZXMgYXMgYWJvdmUKIyAodGhpcyBzdGVwIGlzIHN1cGVyZmx1b3VzIGlmIHlvdSByZWFkIHRoZSBkYXRhIGFscmVhZHkpLgpmcmllbmQuZGF0YS53MSA8LSBzNTAxCmZyaWVuZC5kYXRhLncyIDwtIHM1MDIKZnJpZW5kLmRhdGEudzMgPC0gczUwMwpkcmluayA8LSBzNTBhCnNtb2tlIDwtIHM1MHMKIyBEZXBlbmRlbnQgdmFyaWFibGUKP3NpZW5hRGVwZW5kZW50CiMgRmlyc3QgY3JlYXRlIGEgNTAgKiA1MCAqIDMgYXJyYXkgY29tcG9zZWQgb2YgdGhlIDMgYWRqYWNlbmN5IG1hdHJpY2VzCmZyaWVuZHNoaXBEYXRhIDwtIGFycmF5KGMoZnJpZW5kLmRhdGEudzEsIGZyaWVuZC5kYXRhLncyLCBmcmllbmQuZGF0YS53MyksCiAgZGltID0gYyg1MCwgNTAsIDMpCikKIyBhbmQgbmV4dCBnaXZlIHRoaXMgdGhlIHJvbGUgb2YgdGhlIGRlcGVuZGVudCB2YXJpYWJsZToKZnJpZW5kc2hpcCA8LSBzaWVuYURlcGVuZGVudChmcmllbmRzaGlwRGF0YSkKCiMgV2UgYWxzbyBtdXN0IHByZXBhcmUgdGhlIG9iamVjdHMgdGhhdCB3aWxsIGJlIHRoZSBleHBsYW5hdG9yeSB2YXJpYWJsZXMuCiMgQ29uc3RhbnQgYWN0b3IgY292YXJpYXRlOyBzbW9raW5nIGZvciB3YXZlIDEuCnNtb2tlMSA8LSBjb0NvdmFyKCBzbW9rZVsgLCAxIF0gKQojIFZhcmlhYmxlIGFjdG9yIGNvdmFyaWF0ZQphbGNvaG9sIDwtIHZhckNvdmFyKCBkcmluayApCgojIFB1dCB0aGUgdmFyaWFibGVzIHRvZ2V0aGVyIGluIHRoZSBkYXRhIHNldCBmb3IgYW5hbHlzaXMKP3NpZW5hRGF0YUNyZWF0ZQpteWRhdGEgPC0gc2llbmFEYXRhQ3JlYXRlKCBmcmllbmRzaGlwLCBzbW9rZTEsIGFsY29ob2wgKQojIENoZWNrIHdoYXQgd2UgaGF2ZQpteWRhdGEKYGBgCgojIyBTcGVjaWZ5IHRoZSBlZmZlY3RzCmBgYHtyIGVjaG89VFJVRX0KIyBZb3UgY2FuIGdldCBhbiBvdXRsaW5lIG9mIHRoZSBkYXRhIHNldCB3aXRoIHNvbWUgYmFzaWMgZGVzY3JpcHRpdmVzIGZyb20KcHJpbnQwMVJlcG9ydCggbXlkYXRhLCBtb2RlbG5hbWU9InM1MCIpCiMgRm9yIHRoZSBtb2RlbCBzcGVjaWZpY2F0aW9uIHdlIG5lZWQgdG8gY3JlYXRlIHRoZSBlZmZlY3RzIG9iamVjdApteWVmZiA8LSBnZXRFZmZlY3RzKCBteWRhdGEgKQojIEFsbCB0aGUgZWZmZWN0cyB0aGF0IGFyZSBhdmFpbGFibGUgZ2l2ZW4gdGhlIHN0cnVjdHVyZQojIG9mIHRoaXMgZGF0YSBzZXQgY2FuIGJlIHNlZW4gZnJvbQplZmZlY3RzRG9jdW1lbnRhdGlvbihteWVmZikKIyBGb3IgYSBwcmVjaXNlIGRlc2NyaXB0aW9uIG9mIGFsbCBlZmZlY3RzLCBzZWUgQ2hhcHRlciAxMiBpbiB0aGUgUlNpZW5hIG1hbnVhbC4KIyBBIGJhc2ljIHNwZWNpZmljYXRpb24gb2YgdGhlIHN0cnVjdHVyYWwgZWZmZWN0czoKP2luY2x1ZGVFZmZlY3RzCm15ZWZmIDwtIGluY2x1ZGVFZmZlY3RzKCBteWVmZiwgdHJhbnNUcmlwLCBjeWNsZTMpCiMgYW5kIHNvbWUgY292YXJpYXRlIGVmZmVjdHM6Cm15ZWZmIDwtIGluY2x1ZGVFZmZlY3RzKCBteWVmZiwgZWdvWCwgYWx0WCwgZWdvWGFsdFgsIGludGVyYWN0aW9uMSA9ICJhbGNvaG9sIiApCm15ZWZmIDwtIGluY2x1ZGVFZmZlY3RzKCBteWVmZiwgc2ltWCwgaW50ZXJhY3Rpb24xID0gInNtb2tlMSIgKQpteWVmZgpgYGAKCiMjIEFsZ29yaXRobSBzZXR0aW5ncyAKYGBge3IgZWNobz1UUlVFfQojIENyZWF0ZSBvYmplY3Qgd2l0aCBhbGdvcml0aG0gc2V0dGluZ3MKIyBBY2NlcHQgZGVmYXVsdHMgYnV0IHNwZWNpZnkgbmFtZSBmb3Igb3V0cHV0IGZpbGUKIyAod2hpY2ggeW91IG1heSByZXBsYWNlIGJ5IGFueSBuYW1lIHlvdSBwcmVmZXIpCj9zaWVuYUFsZ29yaXRobUNyZWF0ZQpteWFsZ29yaXRobSA8LSBzaWVuYUFsZ29yaXRobUNyZWF0ZSggcHJvam5hbWUgPSAnczUwJyApCmBgYAoKIyBFc3RpbWF0aW9uCmBgYHtyIGVjaG89VFJVRX0KP3NpZW5hMDcKYW5zIDwtIHNpZW5hMDcoIG15YWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gbXllZmYpCmFucwpgYGAKCiMgQ2hlY2sgY29udmVyZ2VuY2UgCmBgYHtyfQojIEZvciBjaGVja2luZyBjb252ZXJnZW5jZSwgbG9vayBhdCB0aGUKIyAnT3ZlcmFsbCBtYXhpbXVtIGNvbnZlcmdlbmNlIHJhdGlvJyBtZW50aW9uZWQgdW5kZXIgdGhlIHBhcmFtZXRlciBlc3RpbWF0ZXMuCiMgSXQgY2FuIGFsc28gYmUgc2hvd24gYnkgcmVxdWVzdGluZwphbnMkdGNvbnYubWF4CiMgSWYgdGhpcyBpcyBsZXNzIHRoYW4gMC4yNSwgY29udmVyZ2VuY2UgaXMgZ29vZC4KIyBJZiBjb252ZXJnZW5jZSBpcyBpbmFkZXF1YXRlLCBlc3RpbWF0ZSBvbmNlIG1vcmUsCiMgdXNpbmcgdGhlIHJlc3VsdCBvYnRhaW5lZCBhcyB0aGUgInByZXZpb3VzIGFuc3dlciIKIyBmcm9tIHdoaWNoIGVzdGltYXRpb24gY29udGludWVzOgpgYGAKCiMgUTEKIyMgMWEKRHJvcCB0aGUgZWZmZWN0IG9mIHNtb2tlMSBzaW1pbGFyaXR5IGFuZCBlc3RpbWF0ZSB0aGUgbW9kZWwgYWdhaW4uCkRvIHRoaXMgYnkgdGhlIGZ1bmN0aW9uIHNldEVmZmVjdHMoKSB1c2luZyB0aGUgYGBpbmNsdWRlYGAgcGFyYW1ldGVyLgpHaXZlIHRoZSBjaGFuZ2VkIGVmZmVjdHMgb2JqZWN0IGFuZCB0aGUgbmV3IGFuc3dlciBvYmplY3QgbmV3IG5hbWVzLCBzdWNoIGFzIGVmZmVjdHMxIGFuZCBhbnMxLCB0byBkaXN0aW5ndWlzaCB0aGVtLgoKYGBge3J9CiMgY2hlY2sgdGhlIGN1cnJlbnQgZWZmZWN0IHNldHRpbmcgCm15ZWZmCmBgYAoKVXNlIHRoZSBzaW1pbGFyIHNwZWNpZmljYXRpb24gaW4gYGBpbmNsdWRlRWZmZWN0KClgYCwgYW5kIHRoZSBjaGFuZ2UgdGhlIGFyZ3VtZW50IGBgaW5jbHVkZSA9IEZBTFNFYGAgdG8gdHVybiBvZmYgdGhlIGVmZmVjdC4KYGBge3J9CmVmZmVjdHMxIDwtIHNldEVmZmVjdChteWVmZixzaW1YLGludGVyYWN0aW9uMSA9ICJzbW9rZTEiLCBpbmNsdWRlID0gRkFMU0UpCmBgYAoKQ2hlY2sgdGhlIG5ldyBlZmZlY3Qgc2V0dGluZ3MuCmBgYHtyfQplZmZlY3RzMQpgYGAKCkVzdGltYXRlIHRoZSBuZXcgbW9kZWwKYGBge3IgZWNobz1UUlVFfQphbnMxIDwtIHNpZW5hMDcoIG15YWxnb3JpdGhtLCBkYXRhID0gbXlkYXRhLCBlZmZlY3RzID0gZWZmZWN0czEpCmFuczEKYGBgCgojIyAxYgpDaGFuZ2UgdGhlIHRocmVlIGVmZmVjdHMgb2YgYWxjb2hvbCB0byB0aGUgc2luZ2xlIGVmZmVjdCBvZiBhbGNvaG9sIHNpbWlsYXJpdHksIGFuZCBlc3RpbWF0ZSBhZ2Fpbi4KCkNoZWNrIHRoZSBjdXJyZW50IGVmZmVjdCBzZXR0aW5ncwpgYGB7cn0KbXllZmYKYGBgCgpSZW1vdmUgMyBlZmZlY3RzIG9mIGFsY29ob2wKYGBge3IgZWNobz1UUlVFfQplZmZlY3QyIDwtIHNldEVmZmVjdChteWVmZiwgZWdvWCxpbnRlcmFjdGlvbjEgPSAiYWxjb2hvbCIsaW5jbHVkZSA9IEZBTFNFKQplZmZlY3QyIDwtIHNldEVmZmVjdChlZmZlY3QyLCBhbHRYLGludGVyYWN0aW9uMSA9ICJhbGNvaG9sIixpbmNsdWRlID0gRkFMU0UpCmVmZmVjdDIgPC0gc2V0RWZmZWN0KGVmZmVjdDIsIGVnb1hhbHRYLGludGVyYWN0aW9uMSA9ICJhbGNvaG9sIixpbmNsdWRlID0gRkFMU0UpCmBgYAoKQ2hlY2sgdGhlIGVmZmVjdCBzZXR0aW5nIApgYGB7cn0KZWZmZWN0MgpgYGAKCkFkZCBzaW5nZWwgYWxjb2hvbCBzaW1pbGFyaXR5IGVmZmVjdApgYGB7cn0KZWZmZWN0MiA8LSBzZXRFZmZlY3QoZWZmZWN0Miwgc2ltWCwgaW50ZXJhY3Rpb24xID0gImFsY29ob2wiLCBpbmNsdWRlID0gVFJVRSkKYGBgCgpDaGVjayB0aGUgbW9kZWwgCmBgYHtyfQplZmZlY3QyCmBgYAoKRXN0aW1hdGUgdGhlIG5ldyBtb2RlbApgYGB7ciBlY2hvPVRSVUV9CmFuczIgPC0gc2llbmEwNyggbXlhbGdvcml0aG0sIGRhdGEgPSBteWRhdGEsIGVmZmVjdHMgPSBlZmZlY3RzMikKYW5zMgpgYGAKCiMgUTIKCiMjIFByZXBhcmUgbmV3IGRhdGEgCmBgYHtyIGVjaG89VFJVRX0KIyBOb3cgd2UgcmVkZWZpbmUgdGhlIHJvbGUgb2YgYWxjb2hvbCBkcmlua2luZwojIGFzIGEgZGVwZW5kZW50IGJlaGF2aW91ciB2YXJpYWJsZS4KIyBPbmNlIGFnYWluLCBsb29rIGF0IHRoZSBoZWxwIGZpbGUKP3NpZW5hRGVwZW5kZW50CiMgbm93IHBheWluZyBzcGVjaWFsIGF0dGVudGlvbiB0byB0aGUgPDx0eXBlPj4gcGFyYW1ldGVyLgpkcmlua2luZyA8LSBzaWVuYURlcGVuZGVudCggZHJpbmssIHR5cGUgPSAiYmVoYXZpb3IiICkKCiMgUHV0IHRoZSB2YXJpYWJsZXMgdG9nZXRoZXIgaW4gdGhlIGRhdGEgc2V0IGZvciBhbmFseXNpcwpOQmRhdGEgPC0gc2llbmFEYXRhQ3JlYXRlKCBmcmllbmRzaGlwLCBzbW9rZTEsIGRyaW5raW5nICkKTkJkYXRhCk5CZWZmIDwtIGdldEVmZmVjdHMoIE5CZGF0YSApCmVmZmVjdHNEb2N1bWVudGF0aW9uKE5CZWZmKQpOQmVmZiA8LSBpbmNsdWRlRWZmZWN0cyggTkJlZmYsIHRyYW5zVHJpcCwgdHJhbnNSZWNUcmlwICkKTkJlZmYgPC0gaW5jbHVkZUVmZmVjdHMoIE5CZWZmLCBlZ29YLCBhbHRYLCBlZ29YYWx0WCwKICAgICAgICAgICAgICAgICAgICAgICAgIGludGVyYWN0aW9uMSA9ICJkcmlua2luZyIgKQpOQmVmZiA8LSBpbmNsdWRlRWZmZWN0cyggTkJlZmYsIHNpbVgsIGludGVyYWN0aW9uMSA9ICJzbW9rZTEiICkKTkJlZmYKIyBGb3IgaW5jbHVkaW5nIGVmZmVjdHMgYWxzbyBmb3IgdGhlIGRlcGVuZGVudCBiZWhhdmlvdXIgdmFyaWFibGUsIHNlZQo/aW5jbHVkZUVmZmVjdHMKTkJlZmYgPC0gaW5jbHVkZUVmZmVjdHMoIE5CZWZmLCBhdkFsdCwgbmFtZT0iZHJpbmtpbmciLAogICAgICAgICAgICAgICAgICAgICAgICAgaW50ZXJhY3Rpb24xID0gImZyaWVuZHNoaXAiICkKTkJlZmYKCiMgVG8gaW5jcmVhc2UgZWZmaWNpZW5jeSwgd2UgYWRqdXN0IHRoZSBhbGdvcml0bSAKbXlhbGdvcml0aG0xIDwtIHNpZW5hQWxnb3JpdGhtQ3JlYXRlKCBwcm9qbmFtZSA9ICdzNTAnLCBkb3VibGVBdmVyYWdpbmc9MCkKCiMgRXN0aW1hdGUgYWdhaW4sIHVzaW5nIHRoZSBzZWNvbmQgYWxnb3JpdGhtIHJpZ2h0IGZyb20gdGhlIHN0YXJ0LgpOQmFucyA8LSBzaWVuYTA3KCBteWFsZ29yaXRobTEsIGRhdGEgPSBOQmRhdGEsIGVmZmVjdHMgPSBOQmVmZikKIyBZb3UgbWF5IGltcHJvdmUgY29udmVyZ2VuY2UgKGNvbnNpZGVyaW5nIHRoZSBvdmVyYWxsIG1heGltdW0KIyBjb252ZXJnZW5jZSByYXRpbykgYnkgcmVwZWF0ZWQgZXN0aW1hdGlvbiBpbiB0aGUgc2FtZSB3YXkgYXMgYWJvdmUuCgojIExvb2sgYXQgcmVzdWx0cwpOQmFucwojIE1ha2UgYSBuaWNlciBsaXN0aW5nIG9mIHRoZSByZXN1bHRzCnNpZW5hLnRhYmxlKE5CYW5zLCB0eXBlPSJodG1sIiwgc2lnPVRSVUUpCiMgVGhpcyBwcm9kdWNlcyBhbiBodG1sIGZpbGU7IHNpZW5hLnRhYmxlIGNhbiBhbHNvIHByb2R1Y2UgYSBMYVRlWCBmaWxlLgpgYGAKCgojIyAyYQpSZXBsYWNlIHRoZSBhdmVyYWdlIGFsdGVyIGVmZmVjdCBieSBhdmVyYWdlIHNpbWlsYXJpdHkgKGF2U2ltKSBvciB0b3RhbCBzaW1pbGFyaXR5ICh0b3RTaW0pIGFuZCBlc3RpbWF0ZSB0aGUgbW9kZWwgYWdhaW4uCgpDaGVjayB0aGUgY3VycmVuY3QgZWZmZWN0IHNldHRpbmcgCmBgYHtyfQpOQmVmZgpgYGAKCgpDaGFuZ2UgdGhlIGVmZmVjdCBzZXR0aW5nCmBgYHtyIGVjaG89VFJVRX0KTkJlZmYxIDwtIGluY2x1ZGVFZmZlY3RzKE5CZWZmLCBhdkFsdCwKICBuYW1lID0gImRyaW5raW5nIiwKICBpbnRlcmFjdGlvbjEgPSAiZnJpZW5kc2hpcCIsIGluY2x1ZGUgPSBGQUxTRQopCgpOQmVmZjEgPC0gaW5jbHVkZUVmZmVjdHMoTkJlZmYxLCBhdlNpbSwKICBuYW1lID0gImRyaW5raW5nIiwKICBpbnRlcmFjdGlvbjEgPSAiZnJpZW5kc2hpcCIsIGluY2x1ZGUgPSBUUlVFCikKYGBgCgpFc3RpbWF0ZSB0aGUgbmV3IG1vZGVsIApgYGB7ciBlY2hvPVRSVUV9Ck5CYW5zMSA8LSBzaWVuYTA3KCBteWFsZ29yaXRobTEsIGRhdGEgPSBOQmRhdGEsIGVmZmVjdHMgPSBOQmVmZjEpCk5CYW5zMQpgYGAKCiMjIDJiCkFkZCB0aGUgZWZmZWN0IG9mIHNtb2tpbmcgb24gZHJpbmtpbmcgYW5kIGVzdGltYXRlIGFnYWluLgoKQ2hlY2sgdGhlIGF2YWlsYWJsZSBlZmZlY3RzCmBgYHtyfQplZmZlY3RzRG9jdW1lbnRhdGlvbihOQmVmZjEpCmBgYAoKSW5jbHVkZSAqKmVmZmVjdCBzbW9rZTEgb24gcmF0ZSBkcmlua2luZyoqCmBgYHtyfQpOQmVmZjIgPC0gc2V0RWZmZWN0KE5CZWZmMSwgUmF0ZVgsIG5hbWUgPSAiZHJpbmtpbmciLCBpbnRlcmFjdGlvbjEgPSAic21va2UxIiwgdHlwZSA9ICJyYXRlIikKYGBgCgpFc3RpbWF0ZSB0aGUgbmV3IG1vZGVsIApgYGB7ciBlY2hvPVRSVUV9Ck5CYW5zMiA8LSBzaWVuYTA3KCBteWFsZ29yaXRobTEsIGRhdGEgPSBOQmRhdGEsIGVmZmVjdHMgPSBOQmVmZjIpCk5CYW5zMgpgYGAKCk9QVElPTkFMOiBJZiBlc3RpbWF0aW9uIHJlc3VsdHMgc2hvdWxkIHNob3cgaW5zdWZmaWNpZW50IGNvbnZlcmdlbmNlIChpLmUuLCB0aGUgY29udmVyZ2VuY2UgdC1yYXRpb3MgYXJlIG5vdCBhbGwgYmV0d2VlbiAtMC4xIGFuZCArMC4xIGZvciB0aGUgZXN0aW1hdGVkKCEpIHBhcmFtZXRlcnMsIGFuZCB0aGUgb3ZlcmFsbCBtYXhpbXVtIGNvbnZlcmdlbmNlIHJhdGlvIGlzIGJlbG93IC4yNSksIGFub3RoZXIgcnVuIHdpdGggYmV0dGVyIHN0YXJ0aW5nIHZhbHVlcyBtYXkgaGVscC4gVGhlIG9wdGlvbiDigJhwcmV2QW5z4oCZIG1ha2VzIGl0IHBvc3NpYmxlIHRvIHVzZSB0aGUgbGFzdCBhdmFpbGFibGUgZXN0aW1hdGVzIGFzIHN0YXJ0aW5nIHZhbHVlcyBmb3IgYSBuZXcgcnVuOgoKYGBge3IgZWNobz1UUlVFfQpOQmFuczIgPC0gc2llbmEwNyhteWFsZ29yaXRobTEsCiAgICBkYXRhID0gTkJkYXRhLAogICAgZWZmZWN0cyA9IE5CZWZmMiwKICAgIHZlcmJvc2UgPSBGQUxTRSwKICAgIHJldHVybkRlcHMgPSBUUlVFLAogICAgcHJldkFucyA9IE5CYW5zMikKCk5CYW5zMgpgYGAKCgoKIyBSZWZlcmVuY2VzCgpbUlNpZW5hIE1hbnVhbF0oaHR0cDovL3d3dy5zdGF0cy5veC5hYy51ay9+c25pamRlcnMvc2llbmEvUlNpZW5hX01hbnVhbC5wZGYpCgpbUlNpZW5hIFdvcmtzaG9wIC0gTmV0d29yayBFdm9sdXRpb25dKGh0dHA6Ly9zdGVnbGljaC5nbXcucnVnLm5sL3dvcmtzaG9wcy9uZXR3b3JrLWR5bmFtaWNzTWFya2Rvd24uaHRtbCMoNSlfbW9kZWxfZXN0aW1hdGlvbik=</div>
 
 
 </div>

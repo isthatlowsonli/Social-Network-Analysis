@@ -72,6 +72,13 @@
       "Repository": "CRAN",
       "Hash": "e031418365a7f7a766181ab5a41a5716"
     },
+    "RSiena": {
+      "Package": "RSiena",
+      "Version": "1.2-23",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "b9fbe9173b318041faf4217d79f204a8"
+    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.4.6",
